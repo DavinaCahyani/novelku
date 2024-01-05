@@ -20,11 +20,6 @@ class auth extends CI_Controller {
 	{
 		$this->load->view('auth/register');
 	}
-    // Metode ini digunakan untuk menampilkan halaman registrasi admin. Pengguna yang mendaftar melalui halaman ini akan diberikan peran admin.
-	public function register_admin()
-	{
-		$this->load->view('auth/register_admin');
-	}
 
     // Metode ini dipanggil saat pengguna mencoba untuk login. Ini memeriksa kredensial yang dimasukkan oleh pengguna, 
     // membandingkannya dengan data pengguna yang ada dalam database, dan memberikan sesi jika login berhasil.
@@ -60,7 +55,7 @@ class auth extends CI_Controller {
         if ($this->session->userdata('role') == 'admin') {
             redirect(base_url()."admin/dashboard");
         } elseif ($this->session->userdata('role') == 'user') {
-            redirect(base_url()."user/user");
+            redirect(base_url()."");
         } else {
             redirect(base_url()."auth");
         }
@@ -73,46 +68,6 @@ class auth extends CI_Controller {
 
 // Metode ini digunakan ketika pengguna mencoba mendaftar sebagai admin. Data yang dimasukkan oleh pengguna divalidasi, 
 // dan jika valid, data pengguna baru disimpan dalam database dengan peran "admin."
-public function aksi_register_admin()
-{
-    $username = $this->input->post('username', true);
-    $email = $this->input->post('email', true);
-    $password = $this->input->post('password', true);
-
-    // Validasi input
-    if (empty($username) || empty($email) || empty($password) ) {
-        // Tampilkan pesan error jika ada input yang kosong
-        $this->session->set_flashdata('error', 'Semua field harus diisi.');
-        redirect(base_url().'auth/register_admin'); // sesuaikan dengan URL halaman registrasi .
-    } elseif (strlen($password) < 8) {
-        $this->session->set_flashdata('error_password' , 'gagal...');
-        redirect(base_url('auth/register_admin'));
-    } else {
-        // Memeriksa apakah alamat email sudah terdaftar
-        $existing_user = $this->m_model->getwhere('auth', array('email' => $email))->row_array();
-        if (!empty($existing_user)) {
-            // Jika alamat email sudah terdaftar, tampilkan pesan kesalahan
-            $this->session->set_flashdata('error_email', 'Alamat email sudah terdaftar.');
-            redirect(base_url('auth/register_admin'));
-        } else {
-        // Jika alamat email belum terdaftar, simpan data pengguna baru
-        $data = array(
-            'username' => $username,
-            'email' => $email,
-            'password' => md5($password), // Simpan kata sandi yang telah di-MD5
-            'role' => 'admin', // Atur peran menjadi admin
-            'tingkatan' => '-'
-        );
-    
-        // memanggil model untuk menyimpan data pengguna
-        $this->m_model->tambah_data('auth', $data);
-    
-        // Setelah data pengguna berhasil disimpan, dapat mengarahkan pengguna
-        // ke halaman login atau halaman lain yang sesuai.
-        redirect(base_url().'auth'); // sesuaikan dengan URL halaman login
-        }
-    }
-}
 
 public function aksi_register()
 {
