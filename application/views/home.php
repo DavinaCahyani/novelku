@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $title ?></title>
     <?php $this->load->view('style/css') ?>
+    <link rel="icon" type="image/jpeg" href="<?php echo base_url('davina/logooo.png');?>" />
+
 </head>
 
 <body class="bg-gray-100">
@@ -14,7 +16,7 @@
         <header class="bg-blue-500">
             <div class="container mx-auto flex items-center justify-between p-4">
                 <!-- Logo -->
-                <img src="davina\logo-png.png" alt="Logo" class="w-16 md:w-24">
+                <img src="<?php echo base_url('davina/logo-tipis.png'); ?>" alt="Logo" width="150px">
             </div>
         </header>
 
@@ -95,18 +97,17 @@
         <!-- Informasi Kontak dan Alamat -->
         <div class="bg-gray-200 p-4 md:p-16">
             <div class="container mx-auto">
-                <h2 class="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-center">Hubungi Kami</h2>
 
-                <div class="flex flex-wrap justify-center">
+                <div class="grid grid-cols-3">
                     <!-- Informasi Kontak -->
-                    <div class="w-full md:w-1/2 px-4 mb-4 md:mb-0">
+                    <div class="">
                         <h3 class="text-lg md:text-xl font-semibold mb-2">Informasi Kontak</h3>
                         <p>Email: davinacahyaniputri@gmail.com</p>
                         <p>Telepon: +62 895-3607-54764</p>
                     </div>
 
                     <!-- Alamat -->
-                    <div class="w-full md:w-1/2 px-4">
+                    <div class="">
                         <h3 class="text-lg md:text-xl font-semibold mb-2">Alamat</h3>
                         <p>Gg. Mondosari Tim. No.5, Mondosari, Batursari, Kec. Mranggen, Kabupaten Demak, Jawa Tengah
                             59567</p>
