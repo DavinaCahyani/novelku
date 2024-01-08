@@ -36,5 +36,25 @@ class M_model extends CI_Model {
     {
         return $this->db->get_where($table, array($column => $value));
     }
-   }
+   // application/models/Auth_model.php
+
+    public function getDataUser() {
+        $this->db->where('role', 'user');
+        $query = $this->db->get('auth');
+
+        // Mengembalikan hasil query sebagai array
+        return $query->result();
+    }
+    public function countTotalUser() {
+        $this->db->select('COUNT(*) as total');
+        $this->db->where('role', 'user');
+        $this->db->from('auth');
+
+        $query = $this->db->get();
+
+        return $query->row()->total;
+    }
+
+}
+
 ?>
