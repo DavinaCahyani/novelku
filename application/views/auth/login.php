@@ -6,8 +6,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <?php $this->load->view('style/css') ?>
-    <link rel="icon" type="image/jpeg" href="<?php echo base_url('davina/logooo.png');?>" />
-
+    <link rel="icon" type="image/jpeg" href="<?php echo base_url('davina/logooo.png'); ?>" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body class="min-h-screen bg-white-200 flex items-center justify-center">
@@ -28,9 +28,13 @@
                     </div>
                     <div class="mb-4">
                         <label class="block text-black-700">Kata Sandi</label>
-                        <input type="password" name="password" id="password" placeholder="Masukkan Kata Sandi"
-                            minlength="8" class="w-full px-4 py-3 rounded-lg mt-2 border focus:border-blue-500
-            focus:bg-white focus:outline-none" required>
+                        <div class="relative">
+                            <input type="password" name="password" id="password" placeholder="Masukkan Kata Sandi"
+                                class="w-full px-4 py-3 rounded-lg mt-2 border focus:border-blue-500
+                                focus:bg-white focus:outline-none" required>
+                            <i class="far fa-eye-slash absolute top-1/2 right-4 transform -translate-y-1/2 text-black-400 cursor-pointer mt-1"
+                                id="toggle-password"></i>
+                        </div>
                     </div>
 
                     <button type="submit"
@@ -47,6 +51,24 @@
         </div>
     </div>
 
+    <!-- Added jQuery for toggle password functionality -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('#toggle-password').click(function() {
+            var passwordField = $('#password');
+            var passwordToggle = $(this);
+
+            if (passwordField.attr('type') === 'password') {
+                passwordField.attr('type', 'text');
+                passwordToggle.removeClass('far fa-eye-slash').addClass('far fa-eye');
+            } else {
+                passwordField.attr('type', 'password');
+                passwordToggle.removeClass('far fa-eye').addClass('far fa-eye-slash');
+            }
+        });
+    });
+    </script>
 </body>
 
 </html>

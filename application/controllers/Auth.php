@@ -96,6 +96,7 @@ public function aksi_register()
             'username' => $username,
             'email' => $email,
             'password' => md5($password), // Simpan kata sandi yang telah di-MD5
+            'image' => 'User.png',
             'role' => 'user', // Atur peran menjadi admin
             'tingkatan' => 'non-kontributor' // Atur tingkatan
         );

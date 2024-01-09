@@ -15,7 +15,7 @@
     <div class="flex flex-col md:flex-row h-screen bg-blue-500 text-white">
 
         <!-- Sidebar Content -->
-        <div class="md:w-64 bg-blue-500">
+        <div class="md:w-64 bg-blue-500 flex flex-col">
             <div class="flex items-center justify-center md:h-16 bg-blue-500 border-b border-blue-700">
                 <div class="container mx-auto flex items-center justify-between p-4">
                     <!-- Logo -->
@@ -34,6 +34,12 @@
                 </a>
                 <!-- Add more links as needed -->
             </nav>
+
+            <!-- Logout Link (placed at the bottom) -->
+            <a href="<?php echo base_url('auth') ?>" class="flex items-center p-4 hover:bg-blue-700 mt-auto">
+                <i class="fas fa-sign-out-alt w-6 h-6 mr-2"></i>
+                Logout
+            </a>
         </div>
 
         <!-- Content -->
@@ -46,7 +52,8 @@
                         <i class="fas fa-bars text-white"></i>
                     </button>
                     <!-- Navbar Brand -->
-                    <h1 class="text-2xl font-bold text-white ml-4 md:ml-0">Selamat datang di Dashboard Admin Novel</h1>
+                    <h1 class="text-2xl font-bold text-white ml-4 md:ml-0">Selamat datang di Dashboard Admin Novelku
+                    </h1>
                 </div>
             </nav>
 

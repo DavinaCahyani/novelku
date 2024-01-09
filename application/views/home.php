@@ -13,12 +13,16 @@
 <body class="bg-gray-100">
 
     <div class="all">
-        <header class="bg-blue-500">
-            <div class="container mx-auto flex items-center justify-between p-4">
-                <!-- Logo -->
+        <nav class="bg-blue-500 p-4">
+            <div class="container mx-auto flex items-center justify-between">
                 <img src="<?php echo base_url('davina/logo-tipis.png'); ?>" alt="Logo" width="150px">
+                <div class="space-x-4">
+                    <a href="#" class="text-white">Beranda</a>
+                    <a href="<?php echo base_url(); ?>user/profile" class="text-white">Profil</a>
+                    <a href="<?php echo base_url(); ?>auth" class="text-white">Keluar</a>
+                </div>
             </div>
-        </header>
+        </nav>
 
         <!-- Welcome Section -->
         <div class="welcome-page min-h-screen bg-blue-500 flex items-center justify-center p-4">

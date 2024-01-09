@@ -4,10 +4,9 @@
 <head>
     <title>Register page</title>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <?php $this->load->view('style/css') ?>
     <link rel="icon" type="image/jpeg" href="<?php echo base_url('davina/logooo.png');?>" />
-
 </head>
 
 <body class="min-h-screen bg-white-200 flex items-center justify-center">
@@ -16,8 +15,8 @@
         <div class="container mx-auto flex items-center justify-center">
             <img src="<?php echo base_url('davina/logo-tipis.png'); ?>" alt="Logo" width="150px">
         </div>
-        <div class="grid grid-cols-2 mt-12 gap-4">
-            <div class="">
+        <div class="grid grid-cols-1 md:grid-cols-2 mt-12 gap-4">
+            <div>
 
                 <h2 class="text-2xl font-bold text-[#002D74]">Register</h2>
                 <form class="mt-6" action="<?php echo base_url(); ?>auth/aksi_register" method="post">
@@ -35,10 +34,14 @@
                     </div>
 
                     <div class="mb-4">
-                        <label class="block text-black-700">Password</label>
-                        <input type="password" name="password" id="password" placeholder="Masukkan Kata Sandi"
-                            minlength="8" class="w-full px-4 py-3 rounded-lg mt-2 border focus:border-blue-500
-                        focus:bg-white focus:outline-none" required>
+                        <label class="block text-black-700">Kata Sandi</label>
+                        <div class="relative">
+                            <input type="password" name="password" id="password" placeholder="Masukkan Kata Sandi"
+                                class="w-full px-4 py-3 rounded-lg mt-2 border focus:border-blue-500
+                                focus:bg-white focus:outline-none" required>
+                            <i class="far fa-eye-slash absolute top-1/2 right-4 transform -translate-y-1/2 text-black-400 cursor-pointer mt-1"
+                                id="toggle-password"></i>
+                        </div>
                     </div>
 
                     <button type="submit"
@@ -48,13 +51,29 @@
                         sekarang</a></p>
             </div>
 
-            <div class=" hidden md:flex items-center">
+            <div class="hidden md:flex items-center">
                 <img src="https://cdn.pixabay.com/photo/2016/02/18/16/09/books-1207435_1280.jpg"
                     class="rounded-2xl w-full" alt="Gambar halaman">
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('#toggle-password').click(function() {
+            var passwordField = $('#password');
+            var passwordToggle = $(this);
 
+            if (passwordField.attr('type') === 'password') {
+                passwordField.attr('type', 'text');
+                passwordToggle.removeClass('far fa-eye-slash').addClass('far fa-eye');
+            } else {
+                passwordField.attr('type', 'password');
+                passwordToggle.removeClass('far fa-eye').addClass('far fa-eye-slash');
+            }
+        });
+    });
+    </script>
 </body>
 
 </html>
