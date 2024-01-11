@@ -8,6 +8,15 @@
     <?php $this->load->view('style/css'); ?>
     <link rel="icon" type="image/jpeg" href="<?php echo base_url('davina/logooo.png'); ?>" />
     <style>
+    .image-container {
+        text-align: center;
+    }
+
+    .image-container img {
+        display: block;
+        margin: 0 auto;
+    }
+
     .tab-content {
         display: none;
     }
@@ -61,6 +70,19 @@
         /* Ukuran font untuk username */
         color: #666;
         /* Warna teks username */
+    }
+
+    .input-container {
+        position: relative;
+    }
+
+    .eye-icon {
+        position: absolute;
+        right: 10px;
+        top: 70%;
+        /* Sesuaikan nilai ini */
+        transform: translateY(-50%);
+        cursor: pointer;
     }
     </style>
 </head>
@@ -136,140 +158,94 @@
             </div>
         </div>
         <div id="page2" class="tab-content">
-            <form action="">
+            <form action="<?php echo base_url('user/aksi_image') ?>" enctype="multipart/form-data" method="post">
                 <div class="grid grid-cols-2 gap-6 mt-10">
                     <!-- Left Column - Photo and Cover Photo -->
                     <div class="col-span-1 px-8 py-5">
                         <!-- Card for Changing Photo -->
-                        <label for="photo" class="block text-sm font-medium leading-6 text-gray-900">Photo</label>
-                        <div class="mt-2 flex items-center gap-x-3">
-                            <svg class="h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor"
-                                aria-hidden="true">
-                                <path fill-rule="evenodd"
-                                    d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                            <button type="button"
-                                class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Change</button>
-                        </div>
-
-                        <!-- Card for Updating Cover Photo -->
-                        <label for="cover-photo" class="block text-sm font-medium leading-6 text-gray-900 mt-6">Cover
-                            photo</label>
-                        <div
-                            class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-                            <div class="text-center">
-                                <div class="mt-4 flex text-sm leading-6 text-gray-600">
-                                    <label for="file-upload"
-                                        class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
-                                        <span>Upload a file</span>
-                                        <input id="file-upload" name="file-upload" type="file" class="sr-only">
-                                    </label>
-                                    <p class="pl-1">or drag and drop</p>
-                                </div>
-                                <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
+                        <div class="row">
+                            <h5>Ubah Foto Profil</h5>
+                            <hr>
+                            <div class="mb-3 px-5 col-md-12 image-container">
+                                <img class="rounded-circle" src="<?php echo base_url('images/user/'.$user->image) ?>"
+                                    width="150" />
+                            </div>
+                            <div class="mb-3 px-3 col-md-12">
+                                <input type="file" class="form-control" id="foto" name="foto">
+                            </div>
+                            <div class="mb-3 px-3 col-md-12">
+                                <h5>Preview Image : </h5>
+                            </div>
+                            <div class="mb-3 px-5 col-md-12 image-container">
+                                <img class="rounded-circle" id="preview-image" width="150" />
+                            </div>
+                            <div class="mb-3 px-3 col-md-12">
+                                <button type="submit"
+                                    class="w-full bg-blue-500 hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded-lg px-4 py-3 mt-6">Ubah</button>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Right Column - Personal Information -->
-                    <div class="col-span-1 mt-5 px-8 py-8">
-                        <h2>Informasi Pribadi</h2>
-                        <div class="mt-2">
-                            <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">Username
-                            </label>
-                            <input type="text" name="first-name" id="first-name" autocomplete="given-name"
-                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 mt-1">
-                        </div>
-
-                        <div class="mt-2">
-                            <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Email
-                            </label>
-                            <input type="text" name="last-name" id="last-name" autocomplete="family-name"
-                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 mt-1">
-                        </div>
-
-                        <div class="mt-2">
-                            <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Password lama
-                            </label>
-                            <input id="email" name="email" type="email" autocomplete="email"
-                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 mt-1">
-                        </div>
-
-                        <div class="mt-2">
-                            <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Password baru
-                            </label>
-                            <input id="email" name="email" type="email" autocomplete="email"
-                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 mt-1">
-                        </div>
-                    </div>
-                </div>
             </form>
-        </div>
-
-        <!-- <div id="page2" class="tab-content">
-            <div class="grid grid-cols-2 gap-6 mt-10">
-                <div class="col-span-1">
-                    <label for="photo" class="block text-sm font-medium leading-6 text-gray-900">Photo</label>
-                    <div class="mt-2 flex items-center gap-x-3">
-                        <svg class="h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                            <path fill-rule="evenodd"
-                                d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        <button type="button"
-                            class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Change</button>
+            <!-- Right Column - Personal Information -->
+            <div class="col-span-1 px-8 py-8">
+                <form action="<?php echo base_url('user/aksi_ubah_profil') ?>" enctype="multipart/form-data"
+                    method="post">
+                    <h2>Informasi Pribadi</h2>
+                    <div class="mt-2">
+                        <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Username
+                        </label>
+                        <input type="text" name="username" id="username" autocomplete="username"
+                            value="<?php echo $user->username; ?>"
+                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 mt-1">
                     </div>
-                </div>
-                <div class="col-span-1">
-                    <label for="cover-photo" class="block text-sm font-medium leading-6 text-gray-900">Cover
-                        photo</label>
-                    <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-                        <div class="text-center">
-                            <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor"
-                                aria-hidden="true">
-                                <path fill-rule="evenodd"
-                                    d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                            <div class="mt-4 flex text-sm leading-6 text-gray-600">
-                                <label for="file-upload"
-                                    class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
-                                    <span>Upload a file</span>
-                                    <input id="file-upload" name="file-upload" type="file" class="sr-only">
-                                </label>
-                                <p class="pl-1">or drag and drop</p>
-                            </div>
-                            <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
+
+                    <div class="mt-2">
+                        <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email
+                        </label>
+                        <input type="text" name="email" id="email" autocomplete="email"
+                            value="<?php echo $user->email; ?>"
+                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 mt-1">
+                    </div>
+                    <div>
+                        <h2>Ubah Password</h2>
+                        <div class="mt-2 input-container">
+                            <label for="password_lama" class="block text-sm font-medium leading-6 text-gray-900">
+                                Password lama
+                            </label>
+                            <input id="password_lama" name="password_lama" type="password" autocomplete="password_lama"
+                                class="flex-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 mt-1">
+                            <i class="far fa-eye-slash absolute top-1/2 right-4 transform -translate-y-1/2 text-black-400 cursor-pointer mt-1"
+                                id="toggle-password"></i>
+                        </div>
+
+                        <div class="mt-2 input-container">
+                            <label for="konfirmasi_password" class="block text-sm font-medium leading-6 text-gray-900">
+                                Konfirmasi password
+                            </label>
+                            <input id="konfirmasi_password" name="konfirmasi_password" type="password"
+                                autocomplete="konfirmasi_password"
+                                class="flex-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 mt-1">
+                            <i class="far fa-eye-slash absolute top-1/2 right-4 transform -translate-y-1/2 text-black-400 cursor-pointer mt-1"
+                                id="toggle-password"></i>
+                        </div>
+
+                        <div class="mt-2 input-container">
+                            <label for="password_baru" class="block text-sm font-medium leading-6 text-gray-900">
+                                Password baru
+                            </label>
+                            <input id="password_baru" name="password_baru" type="password" autocomplete="password_baru"
+                                class="flex-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 mt-1">
+                            <i class="far fa-eye-slash absolute top-1/2 right-4 transform -translate-y-1/2 text-black-400 cursor-pointer mt-1"
+                                id="toggle-password"></i>
+                        </div>
+                        <div class="mb-3 px-3 col-md-12">
+                            <button type="submit"
+                                class="w-full bg-blue-500 hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded-lg px-4 py-3 mt-6">Ubah</button>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-span-1">
-                    <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">First name</label>
-                    <div class="mt-2">
-                        <input type="text" name="first-name" id="first-name" autocomplete="given-name"
-                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                    </div>
-                </div>
-
-                <div class="col-span-1">
-                    <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Last name</label>
-                    <div class="mt-2">
-                        <input type="text" name="last-name" id="last-name" autocomplete="family-name"
-                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                    </div>
-                </div>
-
-                <div class="col-span-1">
-                    <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
-                    <div class="mt-2">
-                        <input id="email" name="email" type="email" autocomplete="email"
-                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                    </div>
-                </div>
+                </form>
             </div>
-        </div> -->
+        </div>
     </div>
     <div id="page3" class="tab-content">Content for Page 3</div>
     <div id="page4" class="tab-content">Content for Page 4</div>
@@ -277,23 +253,6 @@
     <?php endforeach; ?>
 
     </div>
-
-    <!-- <div class="container mx-auto my-8 p-8 bg-white shadow-lg rounded-lg">
-        <?php foreach ($auth as $user) : ?>
-        <div class="md:flex">
-            <div class="md:flex-shrink-0">
-                <img class="h-48 w-full object-cover md:w-48"
-                    src="<?php echo base_url('images/user/' . $user->image) ?>" alt="User Image">
-            </div>
-            <div class="p-8">
-                <h2 class="text-2xl font-semibold text-indigo-500 mb-4">Informasi Pribadi</h2>
-                <p class="text-gray-500"><strong>Username:</strong> <?php echo $user->username; ?></p>
-                <p class="text-gray-500"><strong>Email:</strong> <?php echo $user->email; ?></p>
-                <p class="text-gray-500"><strong>Tingkatan:</strong> <?php echo $user->tingkatan; ?></p>
-            </div>
-        </div>
-        <?php endforeach; ?>
-    </div> -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
     $(document).ready(function() {
@@ -316,6 +275,71 @@
             $("#" + tabId).addClass("active");
         });
     });
+    </script>
+    <script>
+    $(document).ready(function() {
+        // Ketika input file berubah
+        $('#foto').on('change', function(e) {
+            var fileInput = $(this)[0];
+            var file = fileInput.files[0];
+            var reader = new FileReader();
+
+            // Jika ada file yang dipilih
+            if (file) {
+                reader.onload = function(e) {
+                    // Menampilkan pratinjau gambar
+                    $('#preview-image').attr('src', e.target.result);
+                    $('#preview-container').show();
+                }
+                // Membaca data gambar sebagai URL
+                reader.readAsDataURL(file);
+            } else {
+                // Jika tidak ada file yang dipilih, sembunyikan pratinjau
+                $('#preview-container').hide();
+            }
+        });
+    });
+    </script>
+    <script>
+    $(document).ready(function() {
+        $('.eye-icon').click(function() {
+            var passwordField = $(this).prev('input');
+            var passwordToggle = $(this);
+
+            if (passwordField.attr('type') === 'password') {
+                passwordField.attr('type', 'text');
+                passwordToggle.removeClass('far fa-eye-slash').addClass('far fa-eye');
+            } else {
+                passwordField.attr('type', 'password');
+                passwordToggle.removeClass('far fa-eye').addClass('far fa-eye-slash');
+            }
+        });
+    });
+    </script>
+
+
+    <script>
+    var error_password_lama = "<?php echo $error_password_lama; ?>";
+    if (error_password_lama) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Kata Sandi Lama Salah',
+            text: "Silakan masukkan kata sandi lama yang benar.",
+            showConfirmButton: false,
+            timer: 2000
+        });
+    }
+
+    var error_konfirmasi_password = "<?php echo $error_konfirmasi_password; ?>";
+    if (error_konfirmasi_password) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Konfirmasi Kata Sandi Tidak Cocok',
+            text: "Kata sandi baru dan konfirmasi kata sandi harus sama.",
+            showConfirmButton: false,
+            timer: 2000
+        });
+    }
     </script>
 </body>
 
