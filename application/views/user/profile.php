@@ -132,118 +132,175 @@
                     Saya</a>
             </li>
         </ul>
-        <div id="page1" class="tab-content">
-            <div class="p-8">
+        <div id="page1" class="tab-content p-5 ">
+            <div class="bg-white p-3 rounded-lg">
                 <h2 class="text-3xl font-bold text-indigo-600 mb-6">User Profile</h2>
-
-                <div class="grid-container">
-                    <!-- Left Column - Label -->
-                    <div class="col-span-1 label-column">
-                        <div class="mb-2">
-                            <p class="text-gray-700 mb-1 mt-3"><strong>Username:</strong></p>
-                            <p class="text-gray-700 mb-1 mt-3"><strong>Email:</strong></p>
-                            <p class="text-gray-700 mb-1 mt-3"><strong>Tingkatan:</strong></p>
-                        </div>
+                <div class="grid grid-cols-2 border-b-4 p-5">
+                    <div>
+                        <p class="text-gray-700 mb-1 mt-3 text-lg"><strong>Username</strong></p>
                     </div>
-
-                    <!-- Right Column - Value -->
-                    <div class="col-span-1 value-column">
-                        <div class="mb-2">
-                            <p class="text-md font-bold text-gray-900 mt-3"><?php echo $user->username; ?></p>
-                            <p class="text-md font-bold text-gray-900 mt-3"><?php echo $user->email; ?></p>
-                            <p class="text-md font-bold text-gray-900 mt-3"><?php echo $user->tingkatan; ?></p>
-                        </div>
+                    <div>
+                        <p class="text-md font-bold text-gray-900 mt-3 text-lg"><?php echo $user->username; ?></p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 border-b-4 p-5">
+                    <div>
+                        <p class="text-gray-700 mb-1 mt-3 text-lg"><strong>Email</strong></p>
+                    </div>
+                    <div>
+                        <p class="text-md font-bold text-gray-900 mt-3 text-lg"><?php echo $user->email; ?></p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 border-b-4 p-5">
+                    <div>
+                        <p class="text-gray-700 mb-1 mt-3 text-lg"><strong>Tingkatan</strong></p>
+                    </div>
+                    <div>
+                        <p class="text-md font-bold text-gray-900 mt-3 text-lg"><?php echo $user->tingkatan; ?></p>
                     </div>
                 </div>
             </div>
         </div>
         <div id="page2" class="tab-content">
-            <form action="<?php echo base_url('user/aksi_image') ?>" enctype="multipart/form-data" method="post">
-                <div class="grid grid-cols-2 gap-6 mt-10">
-                    <!-- Left Column - Photo and Cover Photo -->
-                    <div class="col-span-1 px-8 py-5">
-                        <!-- Card for Changing Photo -->
-                        <div class="row">
-                            <h5>Ubah Foto Profil</h5>
-                            <hr>
-                            <div class="mb-3 px-5 col-md-12 image-container">
-                                <img class="rounded-circle" src="<?php echo base_url('images/user/'.$user->image) ?>"
-                                    width="150" />
+            <div class="p-3">
+                <div class="grid grid-cols-2 gap-5">
+                    <div class="p-8 rounded-lg bg-white">
+                        <form action="<?php echo base_url('user/aksi_image') ?>" enctype="multipart/form-data"
+                            method="post">
+                            <div class="row">
+                                <h5>Ubah Foto Profil</h5>
+                                <hr>
+                                <div class="mb-3 px-5 col-md-12 image-container">
+                                    <img class="rounded-circle"
+                                        src="<?php echo base_url('images/user/'.$user->image) ?>" width="150" />
+                                </div>
+                                <div class="mb-3 px-3 col-md-12">
+                                    <input type="file" class="form-control" id="foto" name="foto">
+                                </div>
+                                <div class="mb-3 px-3 col-md-12">
+                                    <h5>Preview Image : </h5>
+                                </div>
+                                <div class="mb-3 px-5 col-md-12 image-container">
+                                    <img class="rounded-circle" id="preview-image" width="150" />
+                                </div>
+                                <div class="mb-3 px-3 col-md-12">
+                                    <button type="submit"
+                                        class="w-full bg-blue-500 hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded-lg px-4 py-3 mt-6">Ubah</button>
+                                </div>
                             </div>
-                            <div class="mb-3 px-3 col-md-12">
-                                <input type="file" class="form-control" id="foto" name="foto">
-                            </div>
-                            <div class="mb-3 px-3 col-md-12">
-                                <h5>Preview Image : </h5>
-                            </div>
-                            <div class="mb-3 px-5 col-md-12 image-container">
-                                <img class="rounded-circle" id="preview-image" width="150" />
-                            </div>
-                            <div class="mb-3 px-3 col-md-12">
-                                <button type="submit"
-                                    class="w-full bg-blue-500 hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded-lg px-4 py-3 mt-6">Ubah</button>
-                            </div>
-                        </div>
+                        </form>
                     </div>
-            </form>
-            <!-- Right Column - Personal Information -->
-            <div class="col-span-1 px-8 py-8">
-                <form action="<?php echo base_url('user/aksi_ubah_profil') ?>" enctype="multipart/form-data"
-                    method="post">
-                    <h2>Informasi Pribadi</h2>
-                    <div class="mt-2">
-                        <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Username
-                        </label>
-                        <input type="text" name="username" id="username" autocomplete="username"
-                            value="<?php echo $user->username; ?>"
-                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 mt-1">
-                    </div>
+                    <div class="p-8 rounded-lg bg-white">
+                        <h2 class="block text-gray-700 mb-2 text-xl">Ubah Data User</h2>
+                        <form action="<?php echo base_url('user/aksi_ubah_profil') ?>" enctype="multipart/form-data"
+                            method="post">
+                            <div class="mt-4">
+                                <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+                                    Email
+                                </label>
+                                <input value="<?php echo $user->email; ?>"
+                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    name="email" id="email" type="text" placeholder="Email">
+                            </div>
+                            <div class="mt-4">
+                                <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                                    Username
+                                </label>
+                                <input value="<?php echo $user->username; ?>"
+                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    name="username" id="username" type="text" placeholder="username">
+                            </div>
+                            <div class="mt-4">
+                                <label class="block text-gray-700 text-sm font-bold mb-2" for="nama">
+                                    Nama
+                                </label>
+                                <input value="<?php echo $user->nama; ?>"
+                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    name="nama" id="nama" type="text" placeholder="nama">
+                            </div>
+                            <div class="mt-4">
+                                <label class="block text-gray-700 text-sm font-bold mb-2" for="gender">
+                                    Gender
+                                </label>
 
-                    <div class="mt-2">
-                        <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email
-                        </label>
-                        <input type="text" name="email" id="email" autocomplete="email"
-                            value="<?php echo $user->email; ?>"
-                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 mt-1">
-                    </div>
-                    <div>
-                        <h2>Ubah Password</h2>
-                        <div class="mt-2 input-container">
-                            <label for="password_lama" class="block text-sm font-medium leading-6 text-gray-900">
-                                Password lama
-                            </label>
-                            <input id="password_lama" name="password_lama" type="password" autocomplete="password_lama"
-                                class="flex-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 mt-1">
-                            <i class="far fa-eye-slash absolute top-1/2 right-4 transform -translate-y-1/2 text-black-400 cursor-pointer mt-1"
-                                id="toggle-password"></i>
-                        </div>
+                                <div class="flex items-center">
+                                    <input class="mr-2 leading-tight focus:outline-none focus:shadow-outline"
+                                        name="gender" id="male" type="radio" value="Laki-laki"
+                                        <?php echo ($user->gender === 'Laki-laki') ? 'checked' : ''; ?>>
+                                    <label class="text-sm" for="male">
+                                        Laki-laki
+                                    </label>
 
-                        <div class="mt-2 input-container">
-                            <label for="konfirmasi_password" class="block text-sm font-medium leading-6 text-gray-900">
-                                Konfirmasi password
-                            </label>
-                            <input id="konfirmasi_password" name="konfirmasi_password" type="password"
-                                autocomplete="konfirmasi_password"
-                                class="flex-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 mt-1">
-                            <i class="far fa-eye-slash absolute top-1/2 right-4 transform -translate-y-1/2 text-black-400 cursor-pointer mt-1"
-                                id="toggle-password"></i>
-                        </div>
-
-                        <div class="mt-2 input-container">
-                            <label for="password_baru" class="block text-sm font-medium leading-6 text-gray-900">
-                                Password baru
-                            </label>
-                            <input id="password_baru" name="password_baru" type="password" autocomplete="password_baru"
-                                class="flex-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 mt-1">
-                            <i class="far fa-eye-slash absolute top-1/2 right-4 transform -translate-y-1/2 text-black-400 cursor-pointer mt-1"
-                                id="toggle-password"></i>
-                        </div>
-                        <div class="mb-3 px-3 col-md-12">
+                                    <input class="ml-4 mr-2 leading-tight focus:outline-none focus:shadow-outline"
+                                        name="gender" id="female" type="radio" value="Perempuan"
+                                        <?php echo ($user->gender === 'Perempuan') ? 'checked' : ''; ?>>
+                                    <label class="text-sm" for="female">
+                                        Perempuan
+                                    </label>
+                                </div>
+                            </div>
                             <button type="submit"
-                                class="w-full bg-blue-500 hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded-lg px-4 py-3 mt-6">Ubah</button>
+                                class="w-full bg-blue-500 hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded-lg px-5 py-3 mt-6">Ubah</button>
+                        </form>
+
+                        <div class="mb-3 col-md-12">
+                            <form action="<?php echo base_url('user/aksi_ubah_password') ?>"
+                                enctype="multipart/form-data" method="post">
+                                <div class="mt-4">
+                                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password_lama">
+                                        Password lama
+                                    </label>
+                                    <div class="relative">
+                                        <input
+                                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                            name="password_lama" id="password_lama" type="password"
+                                            placeholder="Password lama">
+                                        <span
+                                            class="absolute right-0 top-0 mt-2 mr-4 cursor-pointer text-gray-600 hover:text-gray-900"
+                                            id="togglePassword_lama">
+                                            <i class="fas fa-eye-slash"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4">
+                                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password_baru">
+                                        Password baru
+                                    </label>
+                                    <div class="relative">
+                                        <input
+                                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                            name="password_baru" id="password_baru" type="password"
+                                            placeholder="Password baru">
+                                        <span
+                                            class="absolute right-0 top-0 mt-2 mr-4 cursor-pointer text-gray-600 hover:text-gray-900"
+                                            id="togglePassword_baru">
+                                            <i class="fas fa-eye-slash"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <label class="block text-gray-700 text-sm font-bold mb-2" for="konfirmasi_password">
+                                        Konfirmasi password
+                                    </label>
+                                    <div class="relative">
+                                        <input
+                                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                            name="konfirmasi_password" id="konfirmasi_password" type="password"
+                                            placeholder="Konfirmasi Password">
+                                        <span
+                                            class="absolute right-0 top-0 mt-2 mr-4 cursor-pointer text-gray-600 hover:text-gray-900"
+                                            id="togglePassword_konfirmasi">
+                                            <i class="fas fa-eye-slash"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <button type="submit"
+                                    class="w-full bg-blue-500 hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded-lg px-5 py-3 mt-6">Ubah</button>
+                            </form>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
@@ -251,7 +308,6 @@
     <div id="page4" class="tab-content">Content for Page 4</div>
     <div id="page5" class="tab-content">Content for Page 5</div>
     <?php endforeach; ?>
-
     </div>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
@@ -301,46 +357,61 @@
     });
     </script>
     <script>
-    $(document).ready(function() {
-        $('.eye-icon').click(function() {
-            var passwordField = $(this).prev('input');
-            var passwordToggle = $(this);
+    const passwordInput_lama = document.getElementById('password_lama');
+    const togglePassword_lama = document.getElementById('togglePassword_lama');
 
-            if (passwordField.attr('type') === 'password') {
-                passwordField.attr('type', 'text');
-                passwordToggle.removeClass('far fa-eye-slash').addClass('far fa-eye');
-            } else {
-                passwordField.attr('type', 'password');
-                passwordToggle.removeClass('far fa-eye').addClass('far fa-eye-slash');
-            }
-        });
+    const passwordInput_konfirmasi = document.getElementById('konfirmasi_password');
+    const togglePassword_konfirmasi = document.getElementById('togglePassword_konfirmasi');
+
+    const passwordInput_baru = document.getElementById('password_baru');
+    const togglePassword_baru = document.getElementById('togglePassword_baru');
+
+    togglePassword_lama.addEventListener('click', () => {
+        togglePassword(passwordInput_lama, togglePassword_lama);
+    });
+
+    togglePassword_konfirmasi.addEventListener('click', () => {
+        togglePassword(passwordInput_konfirmasi, togglePassword_konfirmasi);
+    });
+
+    togglePassword_baru.addEventListener('click', () => {
+        togglePassword(passwordInput_baru, togglePassword_baru);
+    });
+
+    function togglePassword(passwordInput, togglePassword) {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        togglePassword.innerHTML = type === 'password' ? '<i class="fas fa-eye-slash"></i>' :
+            '<i class="fas fa-eye"></i>';
+    }
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var error_password_lama = "<?php echo $this->session->flashdata('error_password_lama'); ?>";
+        if (error_password_lama) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Kata Sandi Lama Salah',
+                text: "Silakan masukkan kata sandi lama yang benar.",
+                showConfirmButton: false,
+                timer: 2000
+            });
+        }
+
+        var error_konfirmasi_password = "<?php echo $this->session->flashdata('error_konfirmasi_password'); ?>";
+        if (error_konfirmasi_password) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Konfirmasi Kata Sandi Tidak Cocok',
+                text: "Kata sandi baru dan konfirmasi kata sandi harus sama.",
+                showConfirmButton: false,
+                timer: 2000
+            });
+        }
     });
     </script>
 
 
-    <script>
-    var error_password_lama = "<?php echo $error_password_lama; ?>";
-    if (error_password_lama) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Kata Sandi Lama Salah',
-            text: "Silakan masukkan kata sandi lama yang benar.",
-            showConfirmButton: false,
-            timer: 2000
-        });
-    }
-
-    var error_konfirmasi_password = "<?php echo $error_konfirmasi_password; ?>";
-    if (error_konfirmasi_password) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Konfirmasi Kata Sandi Tidak Cocok',
-            text: "Kata sandi baru dan konfirmasi kata sandi harus sama.",
-            showConfirmButton: false,
-            timer: 2000
-        });
-    }
-    </script>
 </body>
 
 </html>

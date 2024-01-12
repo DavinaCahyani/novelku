@@ -74,38 +74,57 @@ public function aksi_image()
     }
     }
 }
+
 public function aksi_ubah_profil() {
-    // Mengambil input dari formulir
     $email = $this->input->post('email');
     $username = $this->input->post('username');
+    $nama = $this->input->post('nama');
+    $gender = $this->input->post('gender');
+
+    $data = array(
+        'email' => $email,
+        'username' => $username,
+        'nama' => $nama,
+        'gender' => $gender
+    );
+
+    $this->session->set_userdata($data);
+    $update_result = $this->m_model->ubah_data('auth', $data, array('id' => $this->session->userdata('id')));
+
+    if ($update_result) {
+        redirect(base_url('user/profile'));
+    } else {
+        echo 'error';
+        // redirect(base_url('admin/profil'));
+    }
+}
+
+public function aksi_ubah_password() {
     $password_baru = $this->input->post('password_baru');
     $konfirmasi_password = $this->input->post('konfirmasi_password');
-    $password_lama = $this->input->post('password_lama'); // Tambahkan input password lama
+    $password_lama = trim($this->input->post('password_lama')); // Trim input kata sandi lama
 
     // Mengambil data pengguna dari database berdasarkan ID pengguna yang disimpan dalam sesi
     $user_data = $this->m_model->getwhere('auth', array('id' => $this->session->userdata('id')))->row_array();
 
-    // Validasi password lama
-    if (md5($password_lama) !== $user_data['password']) {
-        $error_password_lama = '*Password lama salah' ; // Pesan kesalahan
-        $this->session->set_flashdata('error_password_lama','*Password lama salah');
+    // Debugging
+    var_dump($password_lama, $user_data['password']);
+
+    // Validasi kata sandi lama
+    if (strcmp(md5($password_lama), $user_data['password']) !== 0) {
+        $error_password_lama = '*Kata sandi lama salah' ; // Pesan kesalahan
+        $this->session->set_flashdata('error_password_lama','*Kata sandi lama salah');
         redirect(base_url('user/profile'));
     }
 
-    // Buat data yang akan diubah
-    $data = array(
-        'email' => $email,
-        'username' => $username,
-    );
-
-    // Jika ada password baru
+    // Jika ada kata sandi baru
     if (!empty($password_baru)) {
-        // Pastikan password baru dan konfirmasi password sama
+        // Pastikan kata sandi baru dan konfirmasi kata sandi sama
         if ($password_baru === $konfirmasi_password) {
-            // Hash password baru
+            // Hash kata sandi baru
             $data['password'] = md5($password_baru);
         } else {
-            $this->session->set_flashdata('error_konfirmasi_password','*Password baru dan konfirmasi password harus sama');
+            $this->session->set_flashdata('error_konfirmasi_password','*Kata sandi baru dan konfirmasi kata sandi harus sama');
             redirect(base_url('user/profile'));
         }
     }
