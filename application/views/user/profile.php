@@ -304,7 +304,40 @@
             </div>
         </div>
     </div>
-    <div id="page3" class="tab-content">Content for Page 3</div>
+    <div id="page3" class="tab-content p-5">
+        <div class="bg-white p-3 rounded-lg">
+            <h2 class="text-3xl font-bold text-indigo-600 mb-6">Cerita Saya</h2>
+
+            <!-- Form untuk Unggah Cerita -->
+            <form action="<?php echo base_url('user/cerita') ?>" method="post" enctype="multipart/form-data">
+                <div class="mt-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="judul_cerita">
+                        Judul Cerita
+                    </label>
+                    <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        name="judul_cerita" id="judul_cerita" type="text" placeholder="Judul Cerita">
+                </div>
+                <div class="mt-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="isi_cerita">
+                        Isi Cerita
+                    </label>
+                    <textarea
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        name="isi_cerita" id="isi_cerita" rows="5" placeholder="Isi Cerita"></textarea>
+                </div>
+                <div class="mt-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="gambar_cerita">
+                        Gambar Cerita
+                    </label>
+                    <input type="file" class="form-control" id="gambar_cerita" name="gambar_cerita">
+                </div>
+                <button type="submit"
+                    class="w-full bg-blue-500 hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded-lg px-5 py-3 mt-6">Unggah
+                    Cerita</button>
+            </form>
+        </div>
+    </div>
     <div id="page4" class="tab-content">Content for Page 4</div>
     <div id="page5" class="tab-content">Content for Page 5</div>
     <?php endforeach; ?>

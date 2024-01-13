@@ -34,7 +34,48 @@ class User extends CI_Controller {
 
         $this->load->view('user/profile', $data);
     }
+    
+    public function cerita() {
+        // Validasi form unggah cerita
+        $this->form_validation->set_rules('judul_cerita', 'Judul Cerita', 'required');
+        $this->form_validation->set_rules('isi_cerita', 'Isi Cerita', 'required');
+        
+        if ($this->form_validation->run() == FALSE) {
+            // Jika validasi gagal, tampilkan pesan error atau redirect ke halaman yang sesuai
+            // Contoh: $this->session->set_flashdata('error', 'Gagal mengunggah cerita');
+            // atau redirect ke halaman tertentu
+        } else {
+            // Jika validasi sukses, lakukan proses unggah cerita ke database
+            $data = array(
+                'judul_cerita' => $this->input->post('judul_cerita'),
+                'isi_cerita' => $this->input->post('isi_cerita'),
+                // ... (Tambahkan field lainnya yang dibutuhkan)
+            );
 
+            // Proses unggah gambar
+            $config['upload_path'] = './path/to/your/upload/directory/';
+            $config['allowed_types'] = 'jpg|jpeg|png|gif';
+            $config['max_size'] = 2048; // 2MB
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('gambar_cerita')) {
+                // Jika proses unggah gambar gagal, tampilkan pesan error atau redirect ke halaman yang sesuai
+                // Contoh: $this->session->set_flashdata('error', 'Gagal mengunggah gambar');
+                // atau redirect ke halaman tertentu
+            } else {
+                // Jika proses unggah gambar sukses, ambil nama file yang diupload
+                $data['gambar_cerita'] = $this->upload->data('file_name');
+
+                // Panggil model untuk menyimpan data ke database
+                $this->user_model->unggah_cerita($data);
+
+                // Tampilkan pesan sukses atau redirect ke halaman yang sesuai
+                // Contoh: $this->session->set_flashdata('success', 'Cerita berhasil diunggah');
+                // atau redirect ke halaman tertentu
+            }
+        }
+    }
     public function upload_image_user($value)
 {
     $kode = round(microtime(true) * 1000);
