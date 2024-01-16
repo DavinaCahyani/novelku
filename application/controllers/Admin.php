@@ -21,6 +21,7 @@ class admin extends CI_Controller {
 	{
         $data['auth'] = $this->m_model->getDataUser();
         $data['total'] = $this->m_model->countTotalUser();
+        $data['cerita'] = $this->m_model->countTotalCerita();
 
 
 		$this->load->view('admin/dashboard', $data);

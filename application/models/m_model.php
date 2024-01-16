@@ -54,6 +54,30 @@ class M_model extends CI_Model {
 
         return $query->row()->total;
     }
+    public function countTotalCerita() {
+        $this->db->select('COUNT(*) as total');
+        $this->db->from('cerita_novel');
+
+        $query = $this->db->get();
+
+        return $query->row()->total;
+    }
+    public function get_cerita_novel() {
+        // Gantilah 'nama_tabel' dengan nama tabel sesuai dengan struktur database Anda
+        $query = $this->db->get('cerita_novel');
+
+        // Mengembalikan hasil query sebagai array
+        return $query->result();
+    }
+
+    public function get_cerita_by_user_id($user_id) {
+        $this->db->select('*');
+        $this->db->from('cerita_novel');
+        $this->db->where('id_user', $user_id);
+        $query = $this->db->get();
+
+        return $query->result();
+    }
 
 }
 

@@ -66,7 +66,7 @@
                     <div class="bg-gray-100 rounded-md p-6 shadow-md flex items-center">
                         <i class="fas fa-book fa-3x text-black mr-4"></i>
                         <div>
-                            <h3 class="text-lg font-bold text-black mb-2">500</h3>
+                            <h3 class="text-lg font-bold text-black mb-2"><?php echo $cerita; ?></h3>
                             <p class="text-gray-700">Jumlah Cerita</p>
                         </div>
                     </div>
@@ -84,7 +84,7 @@
                     <div class="bg-gray-100 rounded-md p-6 shadow-md flex items-center">
                         <i class="fas fa-user-plus fa-3x text-black mr-4"></i>
                         <div>
-                            <h3 class="text-lg font-bold text-black mb-2">50</h3>
+                            <h3 class="text-lg font-bold text-black mb-2"></h3>
                             <p class="text-gray-700">Jumlah Kontributor</p>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                     <div class="bg-gray-100 rounded-md p-6 shadow-md flex items-center">
                         <i class="fas fa-exclamation-circle fa-3x text-black mr-4"></i>
                         <div>
-                            <h3 class="text-lg font-bold text-black mb-2">10</h3>
+                            <h3 class="text-lg font-bold text-black mb-2"></h3>
                             <p class="text-gray-700">Cerita Belum Dikonfirmasi</p>
                         </div>
                     </div>

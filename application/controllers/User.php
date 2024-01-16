@@ -31,51 +31,90 @@ class User extends CI_Controller {
                 $user->image = $image_path; // Update nilai di dalam loop
             }
         }
+        $cerita_novel = $this->m_model->get_cerita_by_user_id($user_id);
 
+        $data['cerita_novel'] = $cerita_novel;
+        
         $this->load->view('user/profile', $data);
     }
-    
-    public function cerita() {
-        // Validasi form unggah cerita
-        $this->form_validation->set_rules('judul_cerita', 'Judul Cerita', 'required');
-        $this->form_validation->set_rules('isi_cerita', 'Isi Cerita', 'required');
+    public function upload_cerita()
+	{
+        $this->load->view('user/upload_cerita');
+	}
+    public function ceritaa()
+    {
+        $id_user = $this->session->userdata('id');
+        $penulis = $this->input->post('penulis');
+        $judul = $this->input->post('judul');
+        $isi_cerita = $this->input->post('isi_cerita');
+        $foto = $this->upload_img_cerita('foto');
         
-        if ($this->form_validation->run() == FALSE) {
-            // Jika validasi gagal, tampilkan pesan error atau redirect ke halaman yang sesuai
-            // Contoh: $this->session->set_flashdata('error', 'Gagal mengunggah cerita');
-            // atau redirect ke halaman tertentu
+        if ($foto[0] == false) {
+            redirect(base_url('user/foto_kosong'));
         } else {
-            // Jika validasi sukses, lakukan proses unggah cerita ke database
+            $tanggal_buat = date('Y-m-d'); // Mendapatkan tanggal hari ini dalam format YYYY-MM-DD
+    
             $data = array(
-                'judul_cerita' => $this->input->post('judul_cerita'),
-                'isi_cerita' => $this->input->post('isi_cerita'),
-                // ... (Tambahkan field lainnya yang dibutuhkan)
+                'id_user' => $id_user,
+                'penulis' => $penulis,
+                'judul' => $judul,
+                'isi_cerita' => $isi_cerita,
+                'image' => $foto[1],
+                'tanggal_buat' => $tanggal_buat // Menambahkan tanggal buat
             );
-
-            // Proses unggah gambar
-            $config['upload_path'] = './path/to/your/upload/directory/';
-            $config['allowed_types'] = 'jpg|jpeg|png|gif';
-            $config['max_size'] = 2048; // 2MB
-
-            $this->load->library('upload', $config);
-
-            if (!$this->upload->do_upload('gambar_cerita')) {
-                // Jika proses unggah gambar gagal, tampilkan pesan error atau redirect ke halaman yang sesuai
-                // Contoh: $this->session->set_flashdata('error', 'Gagal mengunggah gambar');
-                // atau redirect ke halaman tertentu
-            } else {
-                // Jika proses unggah gambar sukses, ambil nama file yang diupload
-                $data['gambar_cerita'] = $this->upload->data('file_name');
-
-                // Panggil model untuk menyimpan data ke database
-                $this->user_model->unggah_cerita($data);
-
-                // Tampilkan pesan sukses atau redirect ke halaman yang sesuai
-                // Contoh: $this->session->set_flashdata('success', 'Cerita berhasil diunggah');
-                // atau redirect ke halaman tertentu
-            }
+        }
+    
+        $update_result = $this->m_model->tambah_data('cerita_novel', $data);
+    
+        if ($update_result) {
+            redirect(base_url('user/profile'));
+        } else {
+            echo 'error';
+            redirect(base_url('user/profile'));
         }
     }
+    
+
+
+    public function upload_img_cerita($value)
+    {
+        $kode = round(microtime(true) * 1000);
+        $config['upload_path'] = './images/cerita/';
+        $config['allowed_types'] = 'jpg|png|jpeg';
+        $config['max_size'] = 30000;
+        $config['file_name'] = $kode;
+        $this->upload->initialize($config);
+        if (!$this->upload->do_upload($value)) {
+            return [false, ''];
+        } else {
+            $fn = $this->upload->data();
+            $nama = $fn['file_name'];
+            return [true, $nama];
+        }
+    }
+
+//     public function aksi_image_cerita()
+// {
+//     $foto = $this->upload_img_cerita('foto');
+//     if($foto[0]!==false)
+//     {
+//         $data = array
+//         (
+//             'image' => $foto[1]
+//         );
+//         $masuk = $this->m_model->update('cerita_novel', $data, array('id_novel' => $this->session->userdata('id_novel')));
+//     if ($masuk)
+//     {
+//         $this->session->set_flashdata('sukses', 'berhasil');
+//         redirect(base_url('user/profile'));
+//     }
+//     else
+//     {
+//         $this->session->set_flashdata('error', 'gagal..');
+//         redirect(base_url('user/upload_cerita'));
+//     }
+//     }
+// }
     public function upload_image_user($value)
 {
     $kode = round(microtime(true) * 1000);

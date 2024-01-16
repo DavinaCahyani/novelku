@@ -303,45 +303,42 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div id="page3" class="tab-content p-5">
-        <div class="bg-white p-3 rounded-lg">
-            <h2 class="text-3xl font-bold text-indigo-600 mb-6">Cerita Saya</h2>
+        <?php endforeach; ?>
 
-            <!-- Form untuk Unggah Cerita -->
-            <form action="<?php echo base_url('user/cerita') ?>" method="post" enctype="multipart/form-data">
-                <div class="mt-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="judul_cerita">
-                        Judul Cerita
-                    </label>
-                    <input
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        name="judul_cerita" id="judul_cerita" type="text" placeholder="Judul Cerita">
+        <div id="page3" class="tab-content">
+            <div class="bg-white p-4 md:p-16 md:flex-row shadow-lg max-w-full w-full">
+                <div class="mb-8 mx-4 text-center">
+                    <a href="<?php echo base_url('user/upload_cerita'); ?>"
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        Mulai Menulis
+                    </a>
                 </div>
-                <div class="mt-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="isi_cerita">
-                        Isi Cerita
-                    </label>
-                    <textarea
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        name="isi_cerita" id="isi_cerita" rows="5" placeholder="Isi Cerita"></textarea>
+
+                <div class="mb-8 mx-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <?php foreach ($cerita_novel as $cerita) : ?>
+                        <!-- Buku 1 -->
+                        <div class="card w-full md:w-full flex justify-center">
+                            <div class="max-w-sm rounded overflow-hidden shadow-lg bg-slate-50">
+                                <img class="w-full h-auto mx-auto mt-6 rounded-lg"
+                                    src="<?php echo base_url('images/cerita/'.$cerita->image) ?>" alt="Gambar Buku">
+                                <div class="px-6 py-4">
+                                    <div class="font-bold text-xl mb-2"><?php echo $cerita->judul ?></div>
+                                    <p class="text-gray-700 text-base">
+                                        <?php echo $cerita->penulis ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
-                <div class="mt-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="gambar_cerita">
-                        Gambar Cerita
-                    </label>
-                    <input type="file" class="form-control" id="gambar_cerita" name="gambar_cerita">
-                </div>
-                <button type="submit"
-                    class="w-full bg-blue-500 hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded-lg px-5 py-3 mt-6">Unggah
-                    Cerita</button>
-            </form>
+            </div>
+
         </div>
+
     </div>
-    <div id="page4" class="tab-content">Content for Page 4</div>
-    <div id="page5" class="tab-content">Content for Page 5</div>
-    <?php endforeach; ?>
-    </div>
+
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
     $(document).ready(function() {
@@ -431,7 +428,8 @@
             });
         }
 
-        var error_konfirmasi_password = "<?php echo $this->session->flashdata('error_konfirmasi_password'); ?>";
+        var error_konfirmasi_password =
+            "<?php echo $this->session->flashdata('error_konfirmasi_password'); ?>";
         if (error_konfirmasi_password) {
             Swal.fire({
                 icon: 'error',
@@ -443,8 +441,6 @@
         }
     });
     </script>
-
-
 </body>
 
 </html>
