@@ -54,13 +54,16 @@ class User extends CI_Controller {
         } else {
             $tanggal_buat = date('Y-m-d'); // Mendapatkan tanggal hari ini dalam format YYYY-MM-DD
     
+            $status = 'belum disetujui';
+            
             $data = array(
                 'id_user' => $id_user,
                 'penulis' => $penulis,
                 'judul' => $judul,
                 'isi_cerita' => $isi_cerita,
                 'image' => $foto[1],
-                'tanggal_buat' => $tanggal_buat // Menambahkan tanggal buat
+                'tanggal_buat' => $tanggal_buat,
+                'status' => $status
             );
         }
     

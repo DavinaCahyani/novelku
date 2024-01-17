@@ -37,57 +37,25 @@
 
         <!-- Featured Books Section -->
         <div class="bg-white p-4 md:p-16 md:flex-row shadow-lg max-w-full w-full">
-            <div class="mb-8 mx-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <!-- Buku 1 -->
-                <div class="card w-full md:w-full mb-4 md:mb-0 flex justify-center">
-                    <div class="max-w-sm rounded overflow-hidden shadow-lg bg-slate-50">
-                        <img class="w-full h-auto mx-auto mt-6 rounded-lg" src="" alt="Gambar Buku">
-                        <div class="px-6 py-4">
-                            <div class="font-bold text-xl mb-2">Judul buku 01</div>
-                            <p class="text-gray-700 text-base">
-                                Penulis: Penulis buku 01
-                            </p>
+            <div class="mb-8 mx-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <?php foreach ($cerita as $novel) : ?>
+                    <?php if ($novel->status == 'disetujui') : ?>
+                    <!-- Buku 1 -->
+                    <div class="card w-full md:w-full flex justify-center">
+                        <div class="max-w-sm rounded overflow-hidden shadow-lg bg-slate-50">
+                            <img class="w-full h-auto mx-auto mt-6 rounded-lg"
+                                src="<?php echo base_url('images/cerita/'.$novel->image) ?>" alt="Gambar Buku">
+                            <div class="px-6 py-4">
+                                <div class="font-bold text-xl mb-2"><?php echo $novel->judul ?></div>
+                                <p class="text-gray-700 text-base">
+                                    <?php echo $novel->penulis ?>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Buku 2 -->
-                <div class="card w-full md:w-full mb-4 md:mb-0 flex justify-center">
-                    <div class="max-w-sm rounded overflow-hidden shadow-lg bg-slate-50">
-                        <img class="w-full h-auto mx-auto mt-6 rounded-lg" src="" alt="Gambar Buku">
-                        <div class="px-6 py-4">
-                            <div class="font-bold text-xl mb-2">Judul buku 02</div>
-                            <p class="text-gray-700 text-base">
-                                Penulis: Penulis buku 02
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Buku 3 -->
-                <div class="card w-full md:w-full mb-4 md:mb-0 flex justify-center">
-                    <div class="max-w-sm rounded overflow-hidden shadow-lg bg-slate-50">
-                        <img class="w-full h-auto mx-auto mt-6 rounded-lg" src="" alt="Gambar Buku">
-                        <div class="px-6 py-4">
-                            <div class="font-bold text-xl mb-2">Judul buku 03</div>
-                            <p class="text-gray-700 text-base">
-                                Penulis: Penulis buku 03
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Buku 4 -->
-                <div class="card w-full md:w-full mb-4 md:mb-0 flex justify-center">
-                    <div class="max-w-sm rounded overflow-hidden shadow-lg bg-slate-50">
-                        <img class="w-full h-auto mx-auto mt-6 rounded-lg" src="" alt="Gambar Buku">
-                        <div class="px-6 py-4">
-                            <div class="font-bold text-xl mb-2">Judul buku 04</div>
-                            <p class="text-gray-700 text-base">
-                                Penulis: Penulis buku 04
-                            </p>
-                        </div>
-                    </div>
+                    <?php endif; ?>
+                    <?php endforeach; ?>
                 </div>
 
             </div>

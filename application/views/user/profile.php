@@ -327,6 +327,19 @@
                                     <p class="text-gray-700 text-base">
                                         <?php echo $cerita->penulis ?>
                                     </p>
+                                    <?php if ($cerita->status == 'belum disetujui') : ?>
+                                    <span class="inline-block bg-yellow-500 text-white px-3 py-1 rounded-full mt-2">
+                                        Belum Disetujui
+                                    </span>
+                                    <?php elseif ($cerita->status == 'disetujui') : ?>
+                                    <span class="inline-block bg-green-500 text-white px-3 py-1 rounded-full mt-2">
+                                        Disetujui
+                                    </span>
+                                    <?php else : ?>
+                                    <span class="inline-block bg-red-500 text-white px-3 py-1 rounded-full mt-2">
+                                        Ditolak
+                                    </span>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>

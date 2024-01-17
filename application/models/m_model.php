@@ -36,37 +36,26 @@ class M_model extends CI_Model {
     {
         return $this->db->get_where($table, array($column => $value));
     }
-   // application/models/Auth_model.php
 
     public function getDataUser() {
         $this->db->where('role', 'user');
         $query = $this->db->get('auth');
 
-        // Mengembalikan hasil query sebagai array
         return $query->result();
     }
-    public function countTotalUser() {
+    public function count($column, $where, $table) {
         $this->db->select('COUNT(*) as total');
-        $this->db->where('role', 'user');
-        $this->db->from('auth');
+        $this->db->where($column, $where);
+        $this->db->from($table);
 
         $query = $this->db->get();
 
         return $query->row()->total;
     }
-    public function countTotalCerita() {
-        $this->db->select('COUNT(*) as total');
-        $this->db->from('cerita_novel');
-
-        $query = $this->db->get();
-
-        return $query->row()->total;
-    }
+    
     public function get_cerita_novel() {
-        // Gantilah 'nama_tabel' dengan nama tabel sesuai dengan struktur database Anda
         $query = $this->db->get('cerita_novel');
 
-        // Mengembalikan hasil query sebagai array
         return $query->result();
     }
 
@@ -78,7 +67,26 @@ class M_model extends CI_Model {
 
         return $query->result();
     }
+    public function status_cerita_belum_disetujui()
+    {
+        $data = $this->db->where(['status' => 'belum disetujui'])->get('cerita_novel');
+        return $data;
+    }
+    public function cerita_disetujui() {
+        $query = $this->db->get_where('cerita_novel', array('status' => 'disetujui'));
 
+        return $query->result();
+    }
+    public function grafik_perminggu() {
+        $query = $this->db->query("
+            SELECT DAYNAME(tanggal_buat) as day, COUNT(*) as jumlah
+            FROM cerita_novel
+            WHERE tanggal_buat >= CURDATE() - INTERVAL 7 DAY
+            GROUP BY day
+        ");
+
+        return $query->result();
+    }
 }
 
 ?>
