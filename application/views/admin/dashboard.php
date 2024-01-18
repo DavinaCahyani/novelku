@@ -32,6 +32,10 @@
                     <i class="fas fa-book w-6 h-6 mr-2"></i>
                     Novels
                 </a>
+                <a href="<?php echo base_url('admin/data_user')?>" class="flex items-center p-4 hover:bg-blue-700">
+                    <i class="fa-solid fa-user w-6 h-6 mr-2"></i>
+                    Data User
+                </a>
                 <!-- Add more links as needed -->
             </nav>
 
@@ -433,32 +437,7 @@
     });
     </script>
 
-    <script>
-    function hapus(id) {
-        swal.fire({
-            title: 'Yakin untuk menghapus data ini?',
-            text: "Data ini akan terhapus permanen",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            cancelButtonText: 'Batal',
-            confirmButtonText: 'Ya Hapus'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Berhasil Dihapus',
-                    showConfirmButton: false,
-                    timer: 1500,
 
-                }).then(function() {
-                    window.location.href = "<?php echo base_url('admin/hapus_user/')?>" + id;
-                });
-            }
-        });
-    }
-    </script>
 </body>
 
 </html>

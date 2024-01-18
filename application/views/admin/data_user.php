@@ -56,64 +56,42 @@
                         <i class="fas fa-bars text-white"></i>
                     </button>
                     <!-- Navbar Brand -->
-                    <h1 class="text-2xl font-bold text-white ml-4 md:ml-0">Daftar Novel
+                    <h1 class="text-2xl font-bold text-white ml-4 md:ml-0">Data User
                     </h1>
                 </div>
             </nav>
 
             <div class="overflow-x-auto p-5 m-5 shadow-xl rounded-xl">
                 <p class="text-2xl font-bold text-black">
-                    Daftar Novel
+                    Data User
                 </p>
                 <table class="min-w-full bg-white rounded-md p-6 border border-gray-300 mt-3">
                     <thead class="bg-gray-200">
                         <tr>
                             <th class="border border-gray-300 px-4 py-2 text-black">No</th>
                             <th class="border border-gray-300 px-4 py-2 text-black">Username</th>
-                            <th class="border border-gray-300 px-4 py-2 text-black">Judul</th>
-                            <th class="border border-gray-300 px-4 py-2 text-black">Penulis</th>
+                            <th class="border border-gray-300 px-4 py-2 text-black">Email</th>
+                            <th class="border border-gray-300 px-4 py-2 text-black">Tingkatan</th>
                             <th class="border border-gray-300 px-4 py-2 text-black">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $no=0; foreach($cerita as $row): $no++?>
+                        <?php $no=0; foreach($auth as $row): $no++?>
                         <tr>
                             <td class="border border-gray-300 px-4 py-2 text-black text-center"><?php echo $no ?></td>
                             <td class="border border-gray-300 px-4 py-2 text-black text-center">
-                                <?php echo tampil_username($row->id_user) ?>
+                                <?php echo $row->username ?>
                             </td>
                             <td class="border border-gray-300 px-4 py-2 text-black text-center">
-                                <?php echo $row->judul ?></td>
+                                <?php echo $row->email ?></td>
                             <td class="border border-gray-300 px-4 py-2 text-black text-center">
-                                <?php echo $row->penulis ?>
+                                <?php echo $row->tingkatan ?>
                             </td>
-                            <td class="border border-gray-300 px-4 py-2 text-black justify-center flex gap-3">
-                                <button onClick="hapus(<?php echo $row->id_novel ?>)"
+                            <td class="border border-gray-300 px-4 py-2 text-black text-center">
+                                <button onClick="hapus(<?php echo $row->id ?>)"
                                     class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-red-600 border border-red-700 rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
-                                <?php if ( $row->status == 'disetujui' ) : ?>
-                                <button type="button" disabled
-                                    class="cursor-no-drop inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-green-800 border border-green-800 rounded-md shadow-sm hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-800">
-                                    <i class="fa-solid fa-check"></i>
-                                </button>
-                                <?php else : ?>
-                                <button onClick="disetujui(<?php echo $row->id_novel ?>, <?php echo $row->id_user ?>)"
-                                    class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-green-600 border border-green-700 rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-                                    <i class="fa-solid fa-check"></i>
-                                </button>
-                                <?php endif; ?>
-                                <?php if ( $row->status == 'ditolak' ) : ?>
-                                <button type="button" disabled
-                                    class="cursor-no-drop inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-red-800 border border-red-800 rounded-md shadow-sm hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-800">
-                                    <i class="fa-solid fa-times"></i>
-                                </button>
-                                <?php else : ?>
-                                <button onClick="ditolak(<?php echo $row->id_novel ?>)"
-                                    class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-red-600 border border-red-700 rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
-                                    <i class="fa-solid fa-times"></i>
-                                </button>
-                                <?php endif; ?>
                             </td>
                         </tr>
                         <?php endforeach ?>
@@ -131,7 +109,9 @@
         var sidebar = document.querySelector('.md\\:block');
         sidebar.classList.toggle('hidden');
     });
+    </script>
 
+    <script>
     function hapus(id) {
         swal.fire({
             title: 'Yakin untuk menghapus data ini?',
@@ -151,58 +131,7 @@
                     timer: 1500,
 
                 }).then(function() {
-                    window.location.href = "<?php echo base_url('admin/hapus_cerita/')?>" + id;
-                });
-            }
-        });
-    }
-
-    function disetujui(id_novel, id_user) {
-        swal.fire({
-            title: 'Yakin untuk menyetujui cerita ini?',
-            text: "Cerita ini akan ditampilkan ke seluruh user",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            cancelButtonText: 'Batal',
-            confirmButtonText: 'Ya Setuju'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Berhasil Disetujui',
-                    showConfirmButton: false,
-                    timer: 1500,
-
-                }).then(function() {
-                    window.location.href = "<?php echo base_url('admin/aksi_setuju/')?>" + id_novel +
-                        "/" + id_user;
-                });
-            }
-        });
-    }
-
-    function ditolak(id_novel) {
-        swal.fire({
-            title: 'Yakin untuk menolak cerita ini?',
-            text: "Cerita ini tidak akan ditampilkan ke seluruh user",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            cancelButtonText: 'Batal',
-            confirmButtonText: 'Ya Tolak'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Cerita Ditolak',
-                    showConfirmButton: false,
-                    timer: 1500,
-
-                }).then(function() {
-                    window.location.href = "<?php echo base_url('admin/aksi_tolak/')?>" + id_novel;
+                    window.location.href = "<?php echo base_url('admin/hapus_user/')?>" + id;
                 });
             }
         });

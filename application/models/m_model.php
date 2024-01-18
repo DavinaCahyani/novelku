@@ -87,6 +87,14 @@ class M_model extends CI_Model {
 
         return $query->result();
     }
+    public function get_cerita_by_id($novel_id) {
+        $this->db->select('*');
+        $this->db->from('cerita_novel');
+        $this->db->where('id_novel', $novel_id);
+        $query = $this->db->get();
+
+        return $query->result();
+    }
 }
 
 ?>

@@ -7,7 +7,21 @@
     <title><?php echo $title ?></title>
     <?php $this->load->view('style/css') ?>
     <link rel="icon" type="image/jpeg" href="<?php echo base_url('davina/logooo.png');?>" />
+    <style>
+    /* Tambahkan gaya CSS berikut untuk membuat navbar tetap di bagian atas halaman */
+    nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        /* Sesuaikan dengan kebutuhan, pastikan lebih besar dari konten utama */
+    }
 
+    .content-container {
+        margin-top: 60px;
+        /* Sesuaikan dengan tinggi navbar untuk menghindari tumpang tindih */
+    }
+    </style>
 </head>
 
 <body class="bg-gray-100">
@@ -23,7 +37,6 @@
                 </div>
             </div>
         </nav>
-
         <!-- Welcome Section -->
         <div class="welcome-page min-h-screen bg-blue-500 flex items-center justify-center p-4">
             <div class="text-center text-white">
@@ -35,17 +48,19 @@
             </div>
         </div>
 
-        <!-- Featured Books Section -->
         <div class="bg-white p-4 md:p-16 md:flex-row shadow-lg max-w-full w-full">
             <div class="mb-8 mx-4">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <?php foreach ($cerita as $novel) : ?>
-                    <?php if ($novel->status == 'disetujui') : ?>
-                    <!-- Buku 1 -->
+                    <?php
+                        $counter = 0;
+                        foreach ($cerita as $novel) :
+                            if ($novel->status == 'disetujui' && $counter < 4) :
+                     ?>
+                    <!-- Buku -->
                     <div class="card w-full md:w-full flex justify-center">
                         <div class="max-w-sm rounded overflow-hidden shadow-lg bg-slate-50">
-                            <img class="w-full h-auto mx-auto mt-6 rounded-lg"
-                                src="<?php echo base_url('images/cerita/'.$novel->image) ?>" alt="Gambar Buku">
+                            <img class="w-full h-auto mx-auto max-h-48 rounded-lg"
+                                src="<?php echo base_url('images/cerita/' . $novel->image) ?>" alt="Gambar Buku">
                             <div class="px-6 py-4">
                                 <div class="font-bold text-xl mb-2"><?php echo $novel->judul ?></div>
                                 <p class="text-gray-700 text-base">
@@ -54,17 +69,21 @@
                             </div>
                         </div>
                     </div>
-                    <?php endif; ?>
-                    <?php endforeach; ?>
+                    <?php
+                            $counter++;
+                        endif;
+                    endforeach;
+                     ?>
                 </div>
-
             </div>
 
-            <a href="#"
+            <a href="<?php echo base_url('user/cerita'); ?>"
                 class="inline-block bg-blue-500 text-white py-2 px-6 rounded-full transition duration-300 hover:bg-white hover:text-blue-500 border border-blue-500">Lihat
                 Lebih Banyak</a>
 
         </div>
+
+
 
         <!-- Informasi Kontak dan Alamat -->
         <div class="bg-gray-200 p-4 md:p-16">

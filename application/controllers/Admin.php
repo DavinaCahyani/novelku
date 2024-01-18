@@ -39,6 +39,13 @@ class admin extends CI_Controller {
 		$this->load->view('admin/daftar_novel', $data);
 	}
 
+	public function data_user()
+	{
+        $data['auth'] = $this->m_model->getDataUser();
+
+		$this->load->view('admin/data_user', $data);
+	}
+
     public function aksi_setuju($id_novel,$id_user)
     {
         $status = [

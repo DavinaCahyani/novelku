@@ -41,6 +41,11 @@ class User extends CI_Controller {
 	{
         $this->load->view('user/upload_cerita');
 	}
+    public function cerita()
+	{
+        $data['cerita'] = $this->m_model->cerita_disetujui();
+        $this->load->view('user/cerita', $data);
+	}
     public function ceritaa()
     {
         $id_user = $this->session->userdata('id');
