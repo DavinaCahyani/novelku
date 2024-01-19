@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload cerita</title>
+    <title>Ubah Cerita</title>
     <?php $this->load->view('style/css'); ?>
     <link rel="icon" type="image/jpeg" href="<?php echo base_url('davina/logooo.png'); ?>" />
     <style>
@@ -39,8 +39,8 @@
     <div class="p-3">
         <div class="grid grid-cols-1 gap-5">
             <div class="p-8 rounded-lg bg-white">
-                <h2 class="text-3xl font-bold text-indigo-600 mb-6">Upload Cerita</h2>
-                <form action="<?php echo base_url('user/ceritaa') ?>" method="post" enctype="multipart/form-data">
+                <h2 class="text-3xl font-bold text-indigo-600 mb-6">Ubah Cerita</h2>
+                <form action="<?php echo base_url('user/ubah_novel') ?>" method="post" enctype="multipart/form-data">
                     <div class="mb-3 px-5 col-md-12 image-container">
                         <label for="image">Pilih Foto:</label>
                         <input type="file" id="foto" name="foto" class="form-control">
@@ -76,7 +76,7 @@
                             name="isi_cerita" id="isi_cerita" rows="5" placeholder="Isi Cerita"></textarea>
                     </div>
                     <button type="submit"
-                        class="w-full bg-blue-500 hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded-lg px-5 py-3 mt-6">Unggah
+                        class="w-full bg-blue-500 hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded-lg px-5 py-3 mt-6">Ubah
                         Cerita</button>
                 </form>
             </div>

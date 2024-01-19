@@ -84,6 +84,20 @@
         transform: translateY(-50%);
         cursor: pointer;
     }
+
+    nav {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        /* Ensure the navbar is on top of other elements */
+    }
+
+    /* Add some padding to the body to avoid content being hidden behind the fixed navbar */
+    body {
+        padding-top: 50px;
+        /* Adjust this value based on your navbar's height */
+    }
     </style>
 </head>
 
@@ -99,6 +113,7 @@
             </div>
         </div>
     </nav>
+
 
     <!-- Profile Content -->
 
@@ -321,7 +336,7 @@
                         <div class="card w-full md:w-full flex justify-center">
                             <div class="max-w-sm rounded overflow-hidden shadow-lg bg-slate-50">
                                 <img class="w-full h-auto mx-auto max-h-48 rounded-lg"
-                                    src="<?php echo base_url('images/cerita/'.$cerita->image) ?>" alt="Gambar Buku">
+                                    src="<?php echo base_url('images/cerita/' . $cerita->image) ?>" alt="Gambar Buku">
                                 <div class="px-6 py-4">
                                     <div class="font-bold text-xl mb-2"><?php echo $cerita->judul ?></div>
                                     <p class="text-gray-700 text-base">
@@ -340,6 +355,11 @@
                                         Ditolak
                                     </span>
                                     <?php endif; ?>
+                                    <div class="mt-2">
+                                        <a href="<?php echo base_url('user/ubah_cerita/' . $cerita->id_novel); ?>"
+                                            class="inline-block px-3 py-1 bg-blue-500 text-white rounded-xl">Ubah
+                                            Novel</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -347,9 +367,7 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

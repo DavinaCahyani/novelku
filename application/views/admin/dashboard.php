@@ -7,6 +7,17 @@
     <title>Dashboard Admin</title>
     <?php $this->load->view('style/css') ?>
     <link rel="icon" type="image/jpeg" href="<?php echo base_url('davina/logooo.png'); ?>" />
+    <style>
+    #navbar {
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+        background-color: #3498db;
+        /* Adjust the background color */
+        color: #fff;
+        /* Adjust the text color */
+    }
+    </style>
 </head>
 
 <body class="font-sans bg-blue-50 text-blue-900">
@@ -49,7 +60,7 @@
         <!-- Content -->
         <div class="flex-1 overflow-x-hidden overflow-y-auto bg-white">
             <!-- Navbar -->
-            <nav class="bg-blue-500 p-4">
+            <nav id="navbar" class="bg-blue-500 p-4">
                 <div class="container mx-auto flex items-center justify-between">
                     <!-- Toggle Sidebar Button for Mobile -->
                     <button id="toggleSidebar" class="md:hidden">
@@ -63,7 +74,7 @@
 
 
             <!-- Konten Dashboard -->
-            <div class="p-4">
+            <div class="p-4 mt-16">
                 <!-- Kartu-kartu -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     <!-- Kartu 1: Jumlah Cerita -->
@@ -193,6 +204,20 @@
             </div>
         </div>
     </div>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var navbar = document.getElementById("navbar");
+
+        window.addEventListener("scroll", function() {
+            if (window.scrollY > navbar.offsetTop) {
+                navbar.classList.add("fixed");
+            } else {
+                navbar.classList.remove("fixed");
+            }
+        });
+    });
+    </script>
+
     <script>
     window.addEventListener("load", function() {
         const options = {

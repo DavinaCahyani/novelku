@@ -31,7 +31,7 @@
             <div class="container mx-auto flex items-center justify-between">
                 <img src="<?php echo base_url('davina/logo-tipis.png'); ?>" alt="Logo" width="150px">
                 <div class="space-x-4">
-                    <a href="#" class="text-white">Beranda</a>
+                    <a href="<?php echo base_url(); ?>user/cerita" class="text-white">Beranda</a>
                     <a href="<?php echo base_url(); ?>user/profile" class="text-white">Profil</a>
                     <a href="<?php echo base_url(); ?>auth" class="text-white">Keluar</a>
                 </div>
@@ -43,7 +43,7 @@
                 <h1 class="text-xl md:text-5xl font-bold mb-2 md:mb-4">Selamat Datang di Aplikasi Novel Kami</h1>
                 <p class="text-sm md:text-lg mb-4">Temukan dunia cerita di ujung jari Anda. Telusuri novel-novel menarik
                     dan jelajahi petualangan baru dengan aplikasi novel kami.</p>
-                <a href="auth"
+                <a href="<?php echo base_url(); ?>user/cerita"
                     class="inline-block bg-white text-blue-500 py-2 px-4 md:py-2 md:px-6 rounded-full transition duration-300 hover:bg-blue-400 hover:text-white">Mulai</a>
             </div>
         </div>

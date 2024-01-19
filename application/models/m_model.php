@@ -87,14 +87,19 @@ class M_model extends CI_Model {
 
         return $query->result();
     }
-    public function get_cerita_by_id($novel_id) {
-        $this->db->select('*');
-        $this->db->from('cerita_novel');
-        $this->db->where('id_novel', $novel_id);
-        $query = $this->db->get();
-
-        return $query->result();
+    public function update_novel($id_novel, $data)
+    {
+        // Fungsi untuk mengubah data novel dalam tabel 'cerita_novel' berdasarkan ID novel
+        $where = array('id_novel' => $id_novel);
+        return $this->ubah_data('cerita_novel', $data, $where);
     }
+
+    public function get_novel_by_id($id_novel)
+    {
+        // Fungsi untuk mendapatkan detail novel berdasarkan ID
+        return $this->db->get_where('cerita_novel', array('id_novel' => $id_novel))->row();
+    }
+
 }
 
 ?>

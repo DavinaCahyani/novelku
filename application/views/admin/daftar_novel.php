@@ -92,7 +92,8 @@
                                     class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-red-600 border border-red-700 rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
-                                <?php if ( $row->status == 'disetujui' ) : ?>
+                                <!-- Tombol Setuju -->
+                                <?php if ($row->status == 'disetujui' || $row->status == 'ditolak') : ?>
                                 <button type="button" disabled
                                     class="cursor-no-drop inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-green-800 border border-green-800 rounded-md shadow-sm hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-800">
                                     <i class="fa-solid fa-check"></i>
@@ -103,7 +104,9 @@
                                     <i class="fa-solid fa-check"></i>
                                 </button>
                                 <?php endif; ?>
-                                <?php if ( $row->status == 'ditolak' ) : ?>
+
+                                <!-- Tombol Tolak -->
+                                <?php if ($row->status == 'ditolak' || $row->status == 'disetujui') : ?>
                                 <button type="button" disabled
                                     class="cursor-no-drop inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-red-800 border border-red-800 rounded-md shadow-sm hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-800">
                                     <i class="fa-solid fa-times"></i>
@@ -114,6 +117,7 @@
                                     <i class="fa-solid fa-times"></i>
                                 </button>
                                 <?php endif; ?>
+
                             </td>
                         </tr>
                         <?php endforeach ?>
