@@ -42,15 +42,18 @@
                 <h2 class="text-3xl font-bold text-indigo-600 mb-6">Upload Cerita</h2>
                 <form action="<?php echo base_url('user/ceritaa') ?>" method="post" enctype="multipart/form-data">
                     <div class="mb-3 px-5 col-md-12 image-container">
-                        <label for="image">Pilih Foto:</label>
+                        <label for="foto">Pilih Foto:</label>
                         <input type="file" id="foto" name="foto" class="form-control">
                     </div>
                     <div class="mb-3 px-3 col-md-12">
                         <h5>Preview Image : </h5>
                     </div>
                     <div class="mb-3 px-5 col-md-12 image-container">
-                        <img class="rounded-circle" id="preview-image" width="150" />
+                        <div id="preview-container">
+                            <img class="rounded-circle" id="preview-image" width="150" />
+                        </div>
                     </div>
+
                     <div class="mt-4">
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="penulis">
                             Penulis
@@ -86,7 +89,7 @@
     <script>
     $(document).ready(function() {
         // Ketika input file berubah
-        $('#image').on('change', function(e) {
+        $('#foto').on('change', function(e) {
             var fileInput = $(this)[0];
             var file = fileInput.files[0];
             var reader = new FileReader();

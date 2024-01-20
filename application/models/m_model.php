@@ -96,9 +96,9 @@ class M_model extends CI_Model {
 
     public function get_novel_by_id($id_novel)
     {
-        // Fungsi untuk mendapatkan detail novel berdasarkan ID
         return $this->db->get_where('cerita_novel', array('id_novel' => $id_novel))->row();
     }
+    
 
 }
 

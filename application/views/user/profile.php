@@ -129,7 +129,7 @@
             <p class="user-text">User</p>
             <p class="username-text"><?php echo $user->username; ?></p>
         </div>
-        <ul class="grid grid-flow-col text-center border-b border-gray-200 text-gray-500 mt-12">
+        <ul class="grid grid-flow-col text-center border-b border-gray-200 text-gray-500 mt-12" id="tabs">
             <li>
                 <a href="#page1"
                     class="flex justify-center border-b-4 border-transparent hover:text-indigo-600 hover:border-indigo-600 py-4">My
@@ -221,9 +221,10 @@
                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
                                     Username
                                 </label>
-                                <input value="<?php echo $user->username; ?>"
+                                <input
                                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                    name="username" id="username" type="text" placeholder="username">
+                                    name="username" id="username" type="text" placeholder="username"
+                                    value="<?php echo $user->username; ?>">
                             </div>
                             <div class="mt-4">
                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="nama">
@@ -373,11 +374,11 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
     $(document).ready(function() {
-        $(".grid a").on("click", function(event) {
+        $("#tabs a").on("click", function(event) {
             event.preventDefault();
 
             // Hapus kelas 'active' dari semua tab
-            $(".grid a").removeClass("active");
+            $("#tabs a").removeClass("active");
 
             // Tambahkan kelas 'active' ke tab yang diklik
             $(this).addClass("active");

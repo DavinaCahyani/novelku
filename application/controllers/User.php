@@ -41,9 +41,13 @@ class User extends CI_Controller {
 	{
         $this->load->view('user/upload_cerita');
 	}
-    public function ubah_cerita()
+    public function ubah_cerita($id_novel)
     {
-        $this->load->view('user/ubah_cerita');
+        // Panggil fungsi get_novel_by_id dari model untuk mendapatkan detail novel
+        $data['cerita_novel'] = $this->m_model->get_novel_by_id($id_novel);
+
+        // Load view dan kirimkan data novel ke view
+        $this->load->view('user/ubah_cerita', $data);
     }
     public function cerita()
 	{
@@ -86,47 +90,43 @@ class User extends CI_Controller {
         }
     }
     
-    public function ubah_novel($id_novel)
-    {
-        // Periksa apakah pengguna sudah login
-        if (!$this->session->userdata('id')) {
-            redirect(base_url('auth')); // Redirect ke halaman login jika belum login
-        }
+    public function aksi_ubah_novel() 
+    { 
+        $id_novel = $this->input->post('id_novel'); 
+        $penulis = $this->input->post('penulis'); 
+        $judul = $this->input->post('judul'); 
+        $isi_cerita = $this->input->post('isi_cerita'); 
+        $foto = $this->upload_img_cerita('foto'); 
+         
+        if ($foto[0] == false) { 
+            // Jika foto tidak diunggah, abaikan kolom 'image'
+            $data = array( 
+                'penulis' => $penulis, 
+                'judul' => $judul, 
+                'isi_cerita' => $isi_cerita, 
+            ); 
+        } else { 
+            // Jika foto diunggah, sertakan kolom 'image'
+            $data = array( 
+                'penulis' => $penulis, 
+                'judul' => $judul, 
+                'isi_cerita' => $isi_cerita, 
+                'image' => $foto[1], 
+            ); 
+        } 
     
-        // Ambil detail novel berdasarkan ID menggunakan method di model Anda
-        $novel = $this->m_model->get_novel_by_id($id_novel);
-    
-        // Periksa apakah novel ada dan milik pengguna yang sedang login
-        if (!$novel || $novel->id_user != $this->session->userdata('id')) {
-            redirect(base_url('user/profile')); // Redirect ke profil pengguna jika novel tidak ada atau tidak milik pengguna
-        }
-    
-        // Proses formulir untuk mengubah novel
-        $penulis = $this->input->post('penulis');
-        $judul = $this->input->post('judul');
-        $isi_cerita = $this->input->post('isi_cerita');
-        $foto = $this->upload_img_cerita('foto');
-    
-        if ($foto[0] == false) {
-            redirect(base_url('user/foto_kosong'));
-        } else {
-            $data = array(
-                'penulis' => $penulis,
-                'judul' => $judul,
-                'isi_cerita' => $isi_cerita,
-                'image' => $foto[1],
-            );
-        }
-    
-        $update_result = $this->m_model->update_novel($id_novel, $data);
-    
-        if ($update_result) {
-            redirect(base_url('user/profile'));
-        } else {
-            echo 'error';
-            redirect(base_url('user/profile'));
-        }
+ 
+        $update_result = $this->m_model->ubah_data('cerita_novel', $data, array('id_novel' => $id_novel)); 
+ 
+        if ($update_result) { 
+            redirect(base_url('user/profile')); 
+        } else { 
+            echo 'error'; 
+            redirect(base_url('user/ubah_cerita')); 
+        } 
     }
+
+    
     
 
     public function upload_img_cerita($value)

@@ -40,22 +40,27 @@
         <div class="grid grid-cols-1 gap-5">
             <div class="p-8 rounded-lg bg-white">
                 <h2 class="text-3xl font-bold text-indigo-600 mb-6">Ubah Cerita</h2>
-                <form action="<?php echo base_url('user/ubah_novel') ?>" method="post" enctype="multipart/form-data">
+                <form action="<?php echo base_url('user/aksi_ubah_novel') ?>" method="post"
+                    enctype="multipart/form-data">
+                    <input type="hidden" name="id_novel" value="<?php echo $cerita_novel->id_novel ?>">
                     <div class="mb-3 px-5 col-md-12 image-container">
-                        <label for="image">Pilih Foto:</label>
+                        <label for="foto">Pilih Foto:</label>
                         <input type="file" id="foto" name="foto" class="form-control">
                     </div>
                     <div class="mb-3 px-3 col-md-12">
                         <h5>Preview Image : </h5>
                     </div>
                     <div class="mb-3 px-5 col-md-12 image-container">
-                        <img class="rounded-circle" id="preview-image" width="150" />
+                        <div id="preview-container">
+                            <img class="rounded-circle" id="preview-image"
+                                src="<?php echo base_url('images/user/'.$cerita_novel->image) ?>" width="150" />
+                        </div>
                     </div>
                     <div class="mt-4">
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="penulis">
                             Penulis
                         </label>
-                        <input
+                        <input value="<?php echo $cerita_novel->penulis; ?>"
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             name="penulis" id="penulis" type="text" placeholder="Nama penulis">
                     </div>
@@ -63,7 +68,7 @@
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="judul">
                             Judul Cerita
                         </label>
-                        <input
+                        <input value="<?php echo $cerita_novel->judul; ?>"
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             name="judul" id="judul" type="text" placeholder="Judul Cerita">
                     </div>
@@ -71,10 +76,13 @@
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="isi_cerita">
                             Isi Cerita
                         </label>
+
                         <textarea
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            name="isi_cerita" id="isi_cerita" rows="5" placeholder="Isi Cerita"></textarea>
+                            name="isi_cerita" id="isi_cerita" rows="5"
+                            placeholder="Isi Cerita"><?php echo $cerita_novel->isi_cerita; ?></textarea>
                     </div>
+
                     <button type="submit"
                         class="w-full bg-blue-500 hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded-lg px-5 py-3 mt-6">Ubah
                         Cerita</button>
@@ -86,7 +94,7 @@
     <script>
     $(document).ready(function() {
         // Ketika input file berubah
-        $('#image').on('change', function(e) {
+        $('#foto').on('change', function(e) {
             var fileInput = $(this)[0];
             var file = fileInput.files[0];
             var reader = new FileReader();
@@ -107,6 +115,7 @@
         });
     });
     </script>
+
 </body>
 
 </html>
