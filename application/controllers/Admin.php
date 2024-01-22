@@ -25,9 +25,9 @@ class admin extends CI_Controller {
     $data['total_cerita_disetujui'] = $this->m_model->count('status', 'disetujui', 'cerita_novel');
     $data['total_cerita_belum_disetujui'] = $this->m_model->count('status', 'belum disetujui', 'cerita_novel');
     $data['cerita_belum_disetujui'] = $this->m_model->status_cerita_belum_disetujui()->result();
-    $grafik_perminggu_data = $this->m_model->grafik_perminggu();
-    $data['grafik_perminggu'] = json_encode($grafik_perminggu_data);
     
+    $data['grafik_perminggu'] = json_encode($this->m_model->get_stories_past_7_days());
+
     $this->load->view('admin/dashboard', $data);
 }
 

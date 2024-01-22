@@ -220,40 +220,15 @@
 
     <script>
     window.addEventListener("load", function() {
+        // Assuming $grafik_perminggu is an array with dynamic data from your PHP controller
+        const dynamicData = <?php echo json_encode($grafik_perminggu); ?>;
+
         const options = {
-            colors: ["#1A56DB", "#FDBA8C"],
+            colors: ["#1A56DB"],
             series: [{
                 name: "Cerita yang diunggah",
                 color: "#1A56DB",
-                data: [{
-                        x: "Mon",
-                        y: 231
-                    },
-                    {
-                        x: "Tue",
-                        y: 122
-                    },
-                    {
-                        x: "Wed",
-                        y: 63
-                    },
-                    {
-                        x: "Thu",
-                        y: 421
-                    },
-                    {
-                        x: "Fri",
-                        y: 122
-                    },
-                    {
-                        x: "Sat",
-                        y: 323
-                    },
-                    {
-                        x: "Sun",
-                        y: 111
-                    },
-                ],
+                data: dynamicData,
             }, ],
             chart: {
                 type: "bar",

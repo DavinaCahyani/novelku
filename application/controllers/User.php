@@ -41,6 +41,12 @@ class User extends CI_Controller {
 	{
         $this->load->view('user/upload_cerita');
 	}
+    public function detail_cerita($id_novel)
+    {
+        $data['novel'] = $this->m_model->get_novel_by_id($id_novel);
+    
+        $this->load->view('user/detail_cerita', $data);
+    }
     public function ubah_cerita($id_novel)
     {
         // Panggil fungsi get_novel_by_id dari model untuk mendapatkan detail novel
@@ -54,6 +60,7 @@ class User extends CI_Controller {
         $data['cerita'] = $this->m_model->cerita_disetujui();
         $this->load->view('user/cerita', $data);
 	}
+    
     public function ceritaa()
     {
         $id_user = $this->session->userdata('id');

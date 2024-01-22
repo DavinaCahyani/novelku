@@ -77,16 +77,16 @@ class M_model extends CI_Model {
 
         return $query->result();
     }
-    public function grafik_perminggu() {
-        $query = $this->db->query("
-            SELECT DAYNAME(tanggal_buat) as day, COUNT(*) as jumlah
-            FROM cerita_novel
-            WHERE tanggal_buat >= CURDATE() - INTERVAL 7 DAY
-            GROUP BY day
-        ");
-
+    public function get_stories_past_7_days()
+    {
+        $yesterday = date('Y-m-d', strtotime('-7 days'));
+        $this->db->select('DATE(tanggal_buat) as date, COUNT(*) as count');
+        $this->db->where('tanggal_buat >=', $yesterday);
+        $this->db->group_by('DATE(tanggal_buat)');
+        $query = $this->db->get('cerita_novel');
         return $query->result();
     }
+    
     public function update_novel($id_novel, $data)
     {
         // Fungsi untuk mengubah data novel dalam tabel 'cerita_novel' berdasarkan ID novel

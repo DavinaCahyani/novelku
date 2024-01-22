@@ -45,22 +45,22 @@
                     <?php foreach ($cerita as $novel) : ?>
                     <?php if ($novel->status == 'disetujui') : ?>
                     <!-- Buku 1 -->
-                    <div class="card w-full md:w-full flex justify-center">
-                        <div class="max-w-sm rounded overflow-hidden shadow-lg bg-slate-50">
-                            <img class="w-full h-auto mx-auto max-h-48 rounded-lg"
-                                src="<?php echo base_url('images/cerita/' . $novel->image) ?>" alt="Gambar Buku">
-                            <div class="px-6 py-4">
-                                <div class="font-bold text-xl mb-2"><?php echo $novel->judul ?></div>
-                                <p class="text-gray-700 text-base">
-                                    <?php echo $novel->penulis ?>
-                                </p>
+                    <a href="<?php echo base_url('user/detail_cerita/' . $novel->id_novel); ?>"
+                        class="max-w-sm rounded overflow-hidden shadow-lg bg-slate-50">
+                        <div class="card w-full md:w-full flex justify-center">
+                            <div class="max-w-sm rounded overflow-hidden shadow-lg bg-slate-50">
+                                <img class="w-full h-auto mx-auto max-h-48 rounded-lg"
+                                    src="<?php echo base_url('images/cerita/' . $novel->image) ?>" alt="Gambar Buku">
+                                <div class="px-6 py-4">
+                                    <div class="font-bold text-xl mb-2"><?php echo $novel->judul ?></div>
+                                    <p class="text-gray-700 text-base">
+                                        <?php echo $novel->penulis ?>
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-
-                    <?php endif; ?>
-                    <?php endforeach; ?>
+                        <?php endif; ?>
+                        <?php endforeach; ?>
                 </div>
             </div>
         </div>
