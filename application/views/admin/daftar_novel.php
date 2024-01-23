@@ -117,7 +117,11 @@
                                     <i class="fa-solid fa-times"></i>
                                 </button>
                                 <?php endif; ?>
-
+                                <!-- Tombol Detail -->
+                                <a href="<?php echo base_url('admin/detail_cerita/') . $row->id_novel; ?>"
+                                    class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-blue-500 border border-blue-600 rounded-md shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
                             </td>
                         </tr>
                         <?php endforeach ?>

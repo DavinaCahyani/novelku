@@ -14,12 +14,38 @@
         top: 0;
         width: 100%;
         z-index: 1000;
-        /* Sesuaikan dengan kebutuhan, pastikan lebih besar dari konten utama */
+        background-color: #3498db;
+        /* Sesuaikan dengan kebutuhan */
     }
 
     .content-container {
         margin-top: 60px;
         /* Sesuaikan dengan tinggi navbar untuk menghindari tumpang tindih */
+    }
+
+    /* Tambahkan gaya CSS berikut untuk membuat halaman responsif */
+    @media only screen and (max-width: 600px) {
+
+        /* Perubahan untuk mode ponsel */
+        nav {
+            position: static;
+        }
+
+        .content-container {
+            margin-top: 0;
+        }
+
+        .welcome-page {
+            padding: 2rem;
+        }
+
+        .card {
+            margin: 1rem;
+        }
+
+        .bg-gray-200 {
+            padding: 2rem;
+        }
     }
     </style>
 </head>
@@ -58,16 +84,18 @@
                      ?>
                     <!-- Buku -->
                     <div class="card w-full md:w-full flex justify-center">
-                        <div class="max-w-sm rounded overflow-hidden shadow-lg bg-slate-50">
-                            <img class="w-full h-auto mx-auto max-h-48 rounded-lg"
-                                src="<?php echo base_url('images/cerita/' . $novel->image) ?>" alt="Gambar Buku">
-                            <div class="px-6 py-4">
-                                <div class="font-bold text-xl mb-2"><?php echo $novel->judul ?></div>
-                                <p class="text-gray-700 text-base">
-                                    <?php echo $novel->penulis ?>
-                                </p>
+                        <a href="<?php echo base_url('user/detail_cerita/' . $novel->id_novel); ?>">
+                            <div class="max-w-sm rounded overflow-hidden shadow-lg bg-slate-50">
+                                <img class="w-full h-auto mx-auto max-h-48 rounded-lg"
+                                    src="<?php echo base_url('images/cerita/' . $novel->image) ?>" alt="Gambar Buku">
+                                <div class="px-6 py-4">
+                                    <div class="font-bold text-xl mb-2"><?php echo $novel->judul ?></div>
+                                    <p class="text-gray-700 text-base">
+                                        <?php echo $novel->penulis ?>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                     <?php
                             $counter++;
@@ -82,23 +110,20 @@
                 Lebih Banyak</a>
 
         </div>
-
-
-
         <!-- Informasi Kontak dan Alamat -->
         <div class="bg-gray-200 p-4 md:p-16">
             <div class="container mx-auto">
 
-                <div class="grid grid-cols-3">
+                <div class="grid grid-cols-1 md:grid-cols-2">
                     <!-- Informasi Kontak -->
-                    <div class="">
+                    <div class="mb-4 md:mb-0">
                         <h3 class="text-lg md:text-xl font-semibold mb-2">Informasi Kontak</h3>
                         <p>Email: davinacahyaniputri@gmail.com</p>
                         <p>Telepon: +62 895-3607-54764</p>
                     </div>
 
                     <!-- Alamat -->
-                    <div class="">
+                    <div>
                         <h3 class="text-lg md:text-xl font-semibold mb-2">Alamat</h3>
                         <p>Gg. Mondosari Tim. No.5, Mondosari, Batursari, Kec. Mranggen, Kabupaten Demak, Jawa Tengah
                             59567</p>
@@ -106,9 +131,7 @@
                 </div>
             </div>
         </div>
-
     </div>
-
 </body>
 
 </html>

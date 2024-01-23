@@ -335,34 +335,37 @@
                         <?php foreach ($cerita_novel as $cerita) : ?>
                         <!-- Buku 1 -->
                         <div class="card w-full md:w-full flex justify-center">
-                            <div class="max-w-sm rounded overflow-hidden shadow-lg bg-slate-50">
-                                <img class="w-full h-auto mx-auto max-h-48 rounded-lg"
-                                    src="<?php echo base_url('images/cerita/' . $cerita->image) ?>" alt="Gambar Buku">
-                                <div class="px-6 py-4">
-                                    <div class="font-bold text-xl mb-2"><?php echo $cerita->judul ?></div>
-                                    <p class="text-gray-700 text-base">
-                                        <?php echo $cerita->penulis ?>
-                                    </p>
-                                    <?php if ($cerita->status == 'belum disetujui') : ?>
-                                    <span class="inline-block bg-yellow-500 text-white px-3 py-1 rounded-full mt-2">
-                                        Belum Disetujui
-                                    </span>
-                                    <?php elseif ($cerita->status == 'disetujui') : ?>
-                                    <span class="inline-block bg-green-500 text-white px-3 py-1 rounded-full mt-2">
-                                        Disetujui
-                                    </span>
-                                    <?php else : ?>
-                                    <span class="inline-block bg-red-500 text-white px-3 py-1 rounded-full mt-2">
-                                        Ditolak
-                                    </span>
-                                    <?php endif; ?>
-                                    <div class="mt-2">
-                                        <a href="<?php echo base_url('user/ubah_cerita/' . $cerita->id_novel); ?>"
-                                            class="inline-block px-3 py-1 bg-blue-500 text-white rounded-xl">Ubah
-                                            Novel</a>
+                            <a href="<?php echo base_url('user/detail_cerita/' . $cerita->id_novel); ?>">
+                                <div class="max-w-sm rounded overflow-hidden shadow-lg bg-slate-50">
+                                    <img class="w-full h-auto mx-auto max-h-48 rounded-lg"
+                                        src="<?php echo base_url('images/cerita/' . $cerita->image) ?>"
+                                        alt="Gambar Buku">
+                                    <div class="px-6 py-4">
+                                        <div class="font-bold text-xl mb-2"><?php echo $cerita->judul ?></div>
+                                        <p class="text-gray-700 text-base">
+                                            <?php echo $cerita->penulis ?>
+                                        </p>
+                                        <?php if ($cerita->status == 'belum disetujui') : ?>
+                                        <span class="inline-block bg-yellow-500 text-white px-3 py-1 rounded-full mt-2">
+                                            Belum Disetujui
+                                        </span>
+                                        <?php elseif ($cerita->status == 'disetujui') : ?>
+                                        <span class="inline-block bg-green-500 text-white px-3 py-1 rounded-full mt-2">
+                                            Disetujui
+                                        </span>
+                                        <?php else : ?>
+                                        <span class="inline-block bg-red-500 text-white px-3 py-1 rounded-full mt-2">
+                                            Ditolak
+                                        </span>
+                                        <?php endif; ?>
+                                        <div class="mt-2">
+                                            <a href="<?php echo base_url('user/ubah_cerita/' . $cerita->id_novel); ?>"
+                                                class="inline-block px-3 py-1 bg-blue-500 text-white rounded-xl">Ubah
+                                                Novel</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                         <?php endforeach; ?>
                     </div>

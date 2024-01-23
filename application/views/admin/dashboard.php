@@ -67,7 +67,7 @@
                         <i class="fas fa-bars text-white"></i>
                     </button>
                     <!-- Navbar Brand -->
-                    <h1 class="text-2xl font-bold text-white ml-4 md:ml-0">Selamat datang di Dashboard Admin Novelku
+                    <h1 class="text-2xl font-bold text-white ml-4 md:ml-0">Dashboard
                     </h1>
                 </div>
             </nav>

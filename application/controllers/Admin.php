@@ -92,6 +92,11 @@ class admin extends CI_Controller {
         $this->m_model->delete('cerita_novel', 'id_novel', $id);
         redirect(base_url('admin/daftar_novel'));
     }
-
+    public function detail_cerita($id_novel)
+    {
+        $data['novel'] = $this->m_model->get_novel_by_id($id_novel);
+    
+        $this->load->view('admin/detail_cerita', $data);
+    }
 }
 ?>

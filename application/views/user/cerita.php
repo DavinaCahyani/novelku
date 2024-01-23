@@ -24,14 +24,14 @@
     </style>
 </head>
 
-<body class="bg-gray-100">
+<body class="bg-white">
 
     <div class="all">
         <nav class="bg-blue-500 p-4">
             <div class="container mx-auto flex items-center justify-between">
                 <img src="<?php echo base_url('davina/logo-tipis.png'); ?>" alt="Logo" width="150px">
                 <div class="space-x-4">
-                    <a href="#" class="text-white">Beranda</a>
+                    <a href="<?php echo base_url(); ?>user/cerita" class="text-white">Beranda</a>
                     <a href="<?php echo base_url(); ?>user/profile" class="text-white">Profil</a>
                     <a href="<?php echo base_url(); ?>auth" class="text-white">Keluar</a>
                 </div>
@@ -61,6 +61,7 @@
                         </div>
                         <?php endif; ?>
                         <?php endforeach; ?>
+                    </a>
                 </div>
             </div>
         </div>
