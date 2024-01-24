@@ -44,8 +44,10 @@ class User extends CI_Controller {
     public function detail_cerita($id_novel)
     {
         $data['novel'] = $this->m_model->get_novel_by_id($id_novel);
-    
+        $data['komentar'] = $this->m_model->getwhere('komentar', array('id_novel' => $id_novel))->result();
+        
         $this->load->view('user/detail_cerita', $data);
+        
     }
     public function ubah_cerita($id_novel)
     {
@@ -63,7 +65,7 @@ class User extends CI_Controller {
     
     public function ceritaa()
     {
-        $id_user = $this->session->userdata('id');
+        $id_user = $this->session->userdata('id'); 
         $penulis = $this->input->post('penulis');
         $judul = $this->input->post('judul');
         $isi_cerita = $this->input->post('isi_cerita');
@@ -94,6 +96,34 @@ class User extends CI_Controller {
         } else {
             echo 'error';
             redirect(base_url('user/profile'));
+        }
+    }
+    
+    public function komentar()
+    {
+         date_default_timezone_set('Asia/Jakarta');
+
+        $id_user = $this->session->userdata('id');
+        $komentar = $this->input->post('komentar');
+        $tanggal = date('Y-m-d');
+        $jam = date('H:i:s');
+        $id_novel = $this->input->post('id_novel'); 
+                    
+            $data = array(
+                'id_user' => $id_user,
+                'komentar' => $komentar,
+                'tanggal' => $tanggal,
+                'jam' => $jam,
+                'id_novel' => $id_novel,
+            );
+    
+        $update_result = $this->m_model->tambah_data('komentar', $data);
+    
+        if ($update_result) {
+            redirect(base_url('user/detail_cerita/'. $id_novel));
+        } else {
+            echo 'error';
+            redirect(base_url('user/detail_cerita/'. $id_novel));
         }
     }
     
@@ -132,9 +162,6 @@ class User extends CI_Controller {
             redirect(base_url('user/ubah_cerita')); 
         } 
     }
-
-    
-    
 
     public function upload_img_cerita($value)
     {

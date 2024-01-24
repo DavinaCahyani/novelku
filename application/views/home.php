@@ -57,7 +57,7 @@
             <div class="container mx-auto flex items-center justify-between">
                 <img src="<?php echo base_url('davina/logo-tipis.png'); ?>" alt="Logo" width="150px">
                 <div class="space-x-4">
-                    <a href="<?php echo base_url(); ?>user/cerita" class="text-white">Beranda</a>
+                    <a href="<?php echo base_url(); ?>" class="text-white">Beranda</a>
                     <a href="<?php echo base_url(); ?>user/profile" class="text-white">Profil</a>
                     <a href="<?php echo base_url(); ?>auth" class="text-white">Keluar</a>
                 </div>
@@ -76,16 +76,16 @@
 
         <div class="bg-white p-4 md:p-16 md:flex-row shadow-lg max-w-full w-full">
             <div class="mb-8 mx-4">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     <?php
                         $counter = 0;
                         foreach ($cerita as $novel) :
                             if ($novel->status == 'disetujui' && $counter < 4) :
                      ?>
                     <!-- Buku -->
-                    <div class="card w-full md:w-full flex justify-center">
+                    <div class="card w-full md:w-full flex justify-center shadow-lg bg-slate-50 py-2">
                         <a href="<?php echo base_url('user/detail_cerita/' . $novel->id_novel); ?>">
-                            <div class="max-w-sm rounded overflow-hidden shadow-lg bg-slate-50">
+                            <div class="max-w-sm rounded overflow-hidden">
                                 <img class="w-full h-auto mx-auto max-h-48 rounded-lg"
                                     src="<?php echo base_url('images/cerita/' . $novel->image) ?>" alt="Gambar Buku">
                                 <div class="px-6 py-4">
