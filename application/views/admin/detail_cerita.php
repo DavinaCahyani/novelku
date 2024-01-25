@@ -46,28 +46,28 @@
                 </div>
             </div>
         </nav>
-    </div>
-    <div class="bg-white p-4 md:p-16 md:flex-row shadow-lg max-w-full w-full content-container">
-        <div class="mb-8 mx-4">
-            <div class="grid grid-cols-1 gap-4">
-                <div class="w-full md:w-full">
-                    <img class="h-auto mx-auto max-h-96 rounded-lg"
-                        src="<?php echo base_url('images/cerita/' . $novel->image) ?>" alt="Gambar Buku">
-                </div>
-                <div class="card w-full md:w-full">
-                    <div class="px-6 py-4 text-center">
-                        <div class="font-bold text-xl mb-2"><?php echo $novel->judul ?></div>
-                        <p class="text-gray-700 text-base">
-                            <?php echo $novel->penulis ?>
-                        </p>
+        <div class="bg-white p-4 md:p-16 md:flex-row shadow-lg max-w-full w-full content-container">
+            <div class="mb-8 mx-4">
+                <div class="grid grid-cols-1 gap-4">
+                    <div class="w-full md:w-full">
+                        <img class="h-auto mx-auto max-h-96 rounded-lg"
+                            src="<?php echo base_url('images/cerita/' . $novel->image) ?>" alt="Gambar Buku">
                     </div>
-                </div>
-                <div class="card w-full md:w-full">
-                    <div class="px-6 py-4 text-center">
-                        <div class="font-bold text-xl mb-2">Cerita</div>
-                        <p class="text-gray-700 text-base overflow-y-auto max-h-80">
-                            <?php echo $novel->isi_cerita ?>
-                        </p>
+                    <div class="card w-full md:w-full">
+                        <div class="px-6 py-4 text-center">
+                            <div class="font-bold text-xl mb-2"><?php echo $novel->judul ?></div>
+                            <p class="text-gray-700 text-base">
+                                <?php echo $novel->penulis ?>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card w-full md:w-full">
+                        <div class="px-6 py-4 text-center">
+                            <div class="font-bold text-xl mb-2">Cerita</div>
+                            <p class="text-gray-700 text-base overflow-y-auto max-h-80">
+                                <?php echo $novel->isi_cerita ?>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>

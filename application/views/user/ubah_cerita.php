@@ -43,17 +43,22 @@
                 <form action="<?php echo base_url('user/aksi_ubah_novel') ?>" method="post"
                     enctype="multipart/form-data">
                     <input type="hidden" name="id_novel" value="<?php echo $cerita_novel->id_novel ?>">
-                    <div class="mb-3 px-5 col-md-12 image-container">
-                        <label for="foto">Pilih Foto:</label>
-                        <input type="file" id="foto" name="foto" class="form-control">
-                    </div>
-                    <div class="mb-3 px-3 col-md-12">
-                        <h5>Preview Image : </h5>
-                    </div>
-                    <div class="mb-3 px-5 col-md-12 image-container">
-                        <div id="preview-container">
-                            <img class="rounded-circle" id="preview-image"
-                                src="<?php echo base_url('images/user/'.$cerita_novel->image) ?>" width="150" />
+                    <div class="mt-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="foto">
+                            Foto
+                        </label>
+                        <input
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            name="foto" id="foto" type="file">
+                        <div class="mb-3 col-md-12 font-bold mt-4 text-sm">
+                            <h5>Preview Image : </h5>
+                        </div>
+                        <div class="mb-3 col-md-12 image-container">
+                            <div id="preview-container">
+                                <img class="rounded-circle"
+                                    src="<?php echo base_url('images/user/'.$cerita_novel->image) ?>" id="preview-image"
+                                    width="150" />
+                            </div>
                         </div>
                     </div>
                     <div class="mt-4">

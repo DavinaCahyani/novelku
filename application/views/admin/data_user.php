@@ -49,19 +49,18 @@
         <!-- Content -->
         <div class="flex-1 overflow-x-hidden overflow-y-auto bg-white">
             <!-- Navbar -->
-            <nav class="bg-blue-500 p-4">
+            <nav class="bg-blue-500 p-4 fixed w-full z-10">
                 <div class="container mx-auto flex items-center justify-between">
                     <!-- Toggle Sidebar Button for Mobile -->
                     <button id="toggleSidebar" class="md:hidden">
                         <i class="fas fa-bars text-white"></i>
                     </button>
                     <!-- Navbar Brand -->
-                    <h1 class="text-2xl font-bold text-white ml-4 md:ml-0">Data User
-                    </h1>
+                    <h1 class="text-2xl font-bold text-white ml-4 md:ml-0">Data User</h1>
                 </div>
             </nav>
 
-            <div class="overflow-x-auto p-5 m-5 shadow-xl rounded-xl">
+            <div class="overflow-x-auto p-5 m-5 shadow-xl rounded-xl mt-20">
                 <p class="text-2xl font-bold text-black">
                     Data User
                 </p>

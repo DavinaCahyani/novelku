@@ -41,19 +41,6 @@
             <div class="p-8 rounded-lg bg-white">
                 <h2 class="text-3xl font-bold text-indigo-600 mb-6">Upload Cerita</h2>
                 <form action="<?php echo base_url('user/ceritaa') ?>" method="post" enctype="multipart/form-data">
-                    <!-- <div class="mb-3 px-5 col-md-12 image-container">
-                        <label for="foto">Pilih Foto:</label>
-                        <input type="file" id="foto" name="foto" class="form-control">
-                    </div>
-                    <div class="mb-3 px-3 col-md-12">
-                        <h5>Preview Image : </h5>
-                    </div>
-                    <div class="mb-3 px-5 col-md-12 image-container">
-                        <div id="preview-container">
-                            <img class="rounded-circle" id="preview-image" width="150" />
-                        </div>
-                    </div> -->
-
                     <div class="mt-4">
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="foto">
                             Foto

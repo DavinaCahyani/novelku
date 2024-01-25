@@ -12,10 +12,7 @@
         position: fixed;
         width: 100%;
         z-index: 1000;
-        background-color: #3498db;
-        /* Adjust the background color */
         color: #fff;
-        /* Adjust the text color */
     }
     </style>
 </head>
@@ -160,13 +157,6 @@
                             <td class="border border-gray-300 px-4 py-2 text-black text-center">
                                 <?php echo $row->tingkatan ?>
                             </td>
-                            <!-- <td class="border border-gray-300 px-4 py-2 text-black text-center">
-                                <button onClick="hapus(<?php echo $row->id ?>)"
-                                    class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-red-600 border border-red-700 rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-                                    data-rounded="rounded-md" data-primary="blue-600" data-primary-reset="{}">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
-                            </td> -->
                         </tr>
                         <?php endforeach ?>
                     </tbody>
@@ -217,18 +207,42 @@
         });
     });
     </script>
-
     <script>
     window.addEventListener("load", function() {
-        // Assuming $grafik_perminggu is an array with dynamic data from your PHP controller
-        const dynamicData = <?php echo json_encode($grafik_perminggu); ?>;
-
         const options = {
-            colors: ["#1A56DB"],
+            colors: ["#1A56DB", "#FDBA8C"],
             series: [{
-                name: "Cerita yang diunggah",
-                color: "#1A56DB",
-                data: dynamicData,
+                name: "Social media",
+                color: "#FDBA8C",
+                data: [{
+                        x: "Mon",
+                        y: 232
+                    },
+                    {
+                        x: "Tue",
+                        y: 113
+                    },
+                    {
+                        x: "Wed",
+                        y: 341
+                    },
+                    {
+                        x: "Thu",
+                        y: 224
+                    },
+                    {
+                        x: "Fri",
+                        y: 522
+                    },
+                    {
+                        x: "Sat",
+                        y: 411
+                    },
+                    {
+                        x: "Sun",
+                        y: 243
+                    },
+                ],
             }, ],
             chart: {
                 type: "bar",
