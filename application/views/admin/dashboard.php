@@ -131,30 +131,30 @@
                 </div>
             </div>
 
-            <div class="overflow-x-auto p-5 m-5 shadow-xl rounded-xl">
+            <div class="p-5 m-5 shadow-xl rounded-xl">
                 <p class="text-2xl font-bold text-black">
                     Daftar User
                 </p>
-                <table class="min-w-full bg-white rounded-md p-6 border border-gray-300 mt-3">
-                    <thead class="bg-gray-200">
+                <table id="example1" class="min-w-full rounded-md p-6 border border-gray-300 mt-3 stripe hover"
+                    style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+                    <thead>
                         <tr>
-                            <th class="border border-gray-300 px-4 py-2 text-black">No</th>
-                            <th class="border border-gray-300 px-4 py-2 text-black">Username</th>
-                            <th class="border border-gray-300 px-4 py-2 text-black">Email</th>
-                            <th class="border border-gray-300 px-4 py-2 text-black">Tingkatan</th>
-                            <!-- <th class="border border-gray-300 px-4 py-2 text-black">Aksi</th> -->
+                            <th data-priority="1" class="text-black">No</th>
+                            <th data-priority="2" class="text-black">Username</th>
+                            <th data-priority="3" class="text-black">Email</th>
+                            <th data-priority="4" class="text-black">Tingkatan</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php $no=0; foreach($auth as $row): $no++?>
                         <tr>
-                            <td class="border border-gray-300 px-4 py-2 text-black text-center"><?php echo $no ?></td>
-                            <td class="border border-gray-300 px-4 py-2 text-black text-center">
+                            <td class="text-black text-center"><?php echo $no ?></td>
+                            <td class="text-black text-center">
                                 <?php echo $row->username ?>
                             </td>
-                            <td class="border border-gray-300 px-4 py-2 text-black text-center">
+                            <td class="text-black text-center">
                                 <?php echo $row->email ?></td>
-                            <td class="border border-gray-300 px-4 py-2 text-black text-center">
+                            <td class="text-black text-center">
                                 <?php echo $row->tingkatan ?>
                             </td>
                         </tr>
@@ -162,29 +162,30 @@
                     </tbody>
                 </table>
             </div>
-            <div class="overflow-x-auto p-5 m-5 shadow-xl rounded-xl">
+            <div class="p-5 m-5 shadow-xl rounded-xl">
                 <p class="text-2xl font-bold text-black">
                     Daftar Cerita Belum Disetujui
                 </p>
-                <table class="min-w-full bg-white rounded-md p-6 border border-gray-300 mt-3">
-                    <thead class="bg-gray-200">
+                <table id="example2" class="min-w-full rounded-md p-6 border border-gray-300 mt-3 stripe hover"
+                    style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+                    <thead>
                         <tr>
-                            <th class="border border-gray-300 px-4 py-2 text-black">No</th>
-                            <th class="border border-gray-300 px-4 py-2 text-black">Username</th>
-                            <th class="border border-gray-300 px-4 py-2 text-black">Judul</th>
-                            <th class="border border-gray-300 px-4 py-2 text-black">Penulis</th>
+                            <th data-priority="1" class="text-black">No</th>
+                            <th data-priority="2" class="text-black">Username</th>
+                            <th data-priority="3" class="text-black">Judul</th>
+                            <th data-priority="4" class="text-black">Penulis</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php $no=0; foreach($cerita_belum_disetujui as $row): $no++?>
                         <tr>
-                            <td class="border border-gray-300 px-4 py-2 text-black text-center"><?php echo $no ?></td>
-                            <td class="border border-gray-300 px-4 py-2 text-black text-center">
+                            <td class="text-black text-center"><?php echo $no ?></td>
+                            <td class="text-black text-center">
                                 <?php echo tampil_username($row->id_user) ?>
                             </td>
-                            <td class="border border-gray-300 px-4 py-2 text-black text-center">
+                            <td class="text-black text-center">
                                 <?php echo $row->judul ?></td>
-                            <td class="border border-gray-300 px-4 py-2 text-black text-center">
+                            <td class="text-black text-center">
                                 <?php echo $row->penulis ?>
                             </td>
                         </tr>
@@ -194,6 +195,33 @@
             </div>
         </div>
     </div>
+    <!-- jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <!--Datatables -->
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+
+    <script>
+    $(document).ready(function() {
+
+        var table = $('#example1').DataTable({
+                responsive: true
+            })
+            .columns.adjust()
+            .responsive.recalc();
+    });
+    </script>
+    <script>
+    $(document).ready(function() {
+
+        var table = $('#example2').DataTable({
+                responsive: true
+            })
+            .columns.adjust()
+            .responsive.recalc();
+    });
+    </script>
     <script>
     document.addEventListener("DOMContentLoaded", function() {
         var navbar = document.getElementById("navbar");

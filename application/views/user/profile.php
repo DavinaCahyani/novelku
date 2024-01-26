@@ -108,7 +108,7 @@
         <div class="container mx-auto flex items-center justify-between">
             <img src="<?php echo base_url('davina/logo-tipis.png'); ?>" alt="Logo" width="150px">
             <div class="space-x-4">
-                <a href="<?php echo base_url(); ?>home" class="text-white">Home</a>
+                <a href="<?php echo base_url(); ?>" class="text-white">Beranda</a>
                 <a href="<?php echo base_url(); ?>auth" class="text-white">Keluar</a>
             </div>
         </div>
@@ -126,8 +126,8 @@
         <div class="px-10 user-info-container">
             <img src="<?php echo base_url('images/user/' . $user->image); ?>"
                 class="rounded-full border-4 border-white -mt-[50px]" alt="Logo" width="160px">
-            <p class="user-text">User</p>
-            <p class="username-text"><?php echo $user->username; ?></p>
+            <!-- <p class="user-text">User</p> -->
+            <p class="username-text text-2xl text-black"><?php echo $user->username; ?></p>
         </div>
         <ul class="grid grid-flow-col text-center border-b border-gray-200 text-gray-500 mt-12" id="tabs">
             <li>

@@ -30,8 +30,8 @@
         <div class="container mx-auto flex items-center justify-between">
             <img src="<?php echo base_url('davina/logo-tipis.png'); ?>" alt="Logo" width="150px">
             <div class="space-x-4">
-                <a href="<?php echo base_url(); ?>home" class="text-white">Home</a>
-                <a href="<?php echo base_url(); ?>auth" class="text-white">Keluar</a>
+                <a href="<?php echo base_url(); ?>" class="text-white">Beranda</a>
+                <a href="<?php echo base_url(); ?>user/profile" class="text-white">Kembali</a>
             </div>
         </div>
     </nav>

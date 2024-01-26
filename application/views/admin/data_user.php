@@ -60,33 +60,34 @@
                 </div>
             </nav>
 
-            <div class="overflow-x-auto p-5 m-5 shadow-xl rounded-xl mt-20">
+            <div class="p-5 m-5 shadow-xl rounded-xl mt-20">
                 <p class="text-2xl font-bold text-black">
                     Data User
                 </p>
-                <table class="min-w-full bg-white rounded-md p-6 border border-gray-300 mt-3">
-                    <thead class="bg-gray-200">
+                <table id="example" class="min-w-full rounded-md p-6 mt-3 stripe hover"
+                    style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+                    <thead>
                         <tr>
-                            <th class="border border-gray-300 px-4 py-2 text-black">No</th>
-                            <th class="border border-gray-300 px-4 py-2 text-black">Username</th>
-                            <th class="border border-gray-300 px-4 py-2 text-black">Email</th>
-                            <th class="border border-gray-300 px-4 py-2 text-black">Tingkatan</th>
-                            <th class="border border-gray-300 px-4 py-2 text-black">Aksi</th>
+                            <th data-priority="1" class="text-black">No</th>
+                            <th data-priority="2" class="text-black">Username</th>
+                            <th data-priority="3" class="text-black">Email</th>
+                            <th data-priority="4" class="text-black">Tingkatan</th>
+                            <th data-priority="5" class="text-black">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php $no=0; foreach($auth as $row): $no++?>
                         <tr>
-                            <td class="border border-gray-300 px-4 py-2 text-black text-center"><?php echo $no ?></td>
-                            <td class="border border-gray-300 px-4 py-2 text-black text-center">
+                            <td class="text-black text-center"><?php echo $no ?></td>
+                            <td class="text-black text-center">
                                 <?php echo $row->username ?>
                             </td>
-                            <td class="border border-gray-300 px-4 py-2 text-black text-center">
+                            <td class="text-black text-center">
                                 <?php echo $row->email ?></td>
-                            <td class="border border-gray-300 px-4 py-2 text-black text-center">
+                            <td class="text-black text-center">
                                 <?php echo $row->tingkatan ?>
                             </td>
-                            <td class="border border-gray-300 px-4 py-2 text-black text-center">
+                            <td class="text-black text-center">
                                 <button onClick="hapus(<?php echo $row->id ?>)"
                                     class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-red-600 border border-red-700 rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                                     <i class="fa-solid fa-trash"></i>
@@ -99,7 +100,23 @@
             </div>
         </div>
     </div>
+    <!-- jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
+    <!--Datatables -->
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+
+    <script>
+    $(document).ready(function() {
+
+        var table = $('#example').DataTable({
+                responsive: true
+            })
+            .columns.adjust()
+            .responsive.recalc();
+    });
+    </script>
     <!-- Include FontAwesome and other dependencies if not already included -->
     <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"></script>
     <script>

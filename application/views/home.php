@@ -57,9 +57,8 @@
             <div class="container mx-auto flex items-center justify-between">
                 <img src="<?php echo base_url('davina/logo-tipis.png'); ?>" alt="Logo" width="150px">
                 <div class="space-x-4">
-                    <a href="<?php echo base_url(); ?>" class="text-white">Beranda</a>
-                    <a href="<?php echo base_url(); ?>user/profile" class="text-white">Profil</a>
-                    <a href="<?php echo base_url(); ?>auth" class="text-white">Keluar</a>
+                    <a href="<?php echo base_url(); ?>user/profile" class="text-white text-xs md:text-lg">Profil</a>
+                    <a href="<?php echo base_url(); ?>auth" class="text-white text-xs md:text-lg">Keluar</a>
                 </div>
             </div>
         </nav>
@@ -118,15 +117,14 @@
                     <!-- Informasi Kontak -->
                     <div class="mb-4 md:mb-0">
                         <h3 class="text-lg md:text-xl font-semibold mb-2">Informasi Kontak</h3>
-                        <p>Email: davinacahyaniputri@gmail.com</p>
-                        <p>Telepon: +62 895-3607-54764</p>
+                        <p>Email: novelku@gmail.com</p>
+                        <p>Telepon: +62 895-0500-2777</p>
                     </div>
 
                     <!-- Alamat -->
                     <div>
                         <h3 class="text-lg md:text-xl font-semibold mb-2">Alamat</h3>
-                        <p>Gg. Mondosari Tim. No.5, Mondosari, Batursari, Kec. Mranggen, Kabupaten Demak, Jawa Tengah
-                            59567</p>
+                        <p>Kota Semarang, Jawa Tengah, Indonesia</p>
                     </div>
                 </div>
             </div>
