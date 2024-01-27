@@ -131,7 +131,7 @@
                 </div>
             </div>
 
-            <div class="p-5 m-5 shadow-xl rounded-xl">
+            <div class="overflow-x-auto p-5 m-5 shadow-xl rounded-xl">
                 <p class="text-2xl font-bold text-black">
                     Daftar User
                 </p>
@@ -162,7 +162,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="p-5 m-5 shadow-xl rounded-xl">
+            <div class="overflow-x-auto p-5 m-5 shadow-xl rounded-xl">
                 <p class="text-2xl font-bold text-black">
                     Daftar Cerita Belum Disetujui
                 </p>

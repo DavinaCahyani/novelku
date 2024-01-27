@@ -60,7 +60,7 @@
                 </div>
             </nav>
 
-            <div class="p-5 m-5 shadow-xl rounded-xl mt-20">
+            <div class="overflow-x-auto p-5 m-5 shadow-xl rounded-xl mt-20">
                 <p class="text-2xl font-bold text-black">
                     Data User
                 </p>
