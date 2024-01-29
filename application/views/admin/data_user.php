@@ -40,7 +40,7 @@
             </nav>
 
             <!-- Logout Link (placed at the bottom) -->
-            <a href="<?php echo base_url('auth') ?>" class="flex items-center p-4 hover:bg-blue-700 mt-auto">
+            <a href="<?php echo base_url('auth/logout') ?>" class="flex items-center p-4 hover:bg-blue-700 mt-auto">
                 <i class="fas fa-sign-out-alt w-6 h-6 mr-2"></i>
                 Logout
             </a>

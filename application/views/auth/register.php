@@ -1,3 +1,7 @@
+<?php
+$error_password = $this->session->flashdata('error_password');
+$error_email = $this->session->flashdata('error_email');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <?php $this->load->view('style/css') ?>
     <link rel="icon" type="image/jpeg" href="<?php echo base_url('davina/logooo.png');?>" />
+
 </head>
 
 <body class="min-h-screen bg-white-200 flex items-center justify-center">
@@ -42,6 +47,7 @@
                             <i class="far fa-eye-slash absolute top-1/2 right-4 transform -translate-y-1/2 text-black-400 cursor-pointer mt-1"
                                 id="toggle-password"></i>
                         </div>
+                        <p>*Password minimal 8 karakter</p>
                     </div>
 
                     <button type="submit"
@@ -73,6 +79,29 @@
             }
         });
     });
+    </script>
+    <script>
+    var error_email = "<?php echo $error_email; ?>";
+    if (error_email) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Kesalahan!!',
+            text: "Alamat email sudah terdaftar!!",
+            showConfirmButton: false,
+            timer: 2000
+        });
+    }
+
+    var error_password = "<?php echo $error_password; ?>";
+    if (error_password) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Kesalahan!!',
+            text: "Password harus memiliki minimal 8 karakter!!",
+            showConfirmButton: false,
+            timer: 2000
+        });
+    }
     </script>
 </body>
 

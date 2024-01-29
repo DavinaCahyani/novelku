@@ -33,7 +33,7 @@
                 <div class="space-x-4">
                     <a href="<?php echo base_url(); ?>" class="text-white text-xs md:text-lg">Beranda</a>
                     <a href="<?php echo base_url(); ?>user/profile" class="text-white text-xs md:text-lg">Profil</a>
-                    <a href="<?php echo base_url(); ?>auth" class="text-white text-xs md:text-lg">Keluar</a>
+                    <a href="<?php echo base_url(); ?>auth/logout" class="text-white text-xs md:text-lg">Keluar</a>
                 </div>
             </div>
         </nav>

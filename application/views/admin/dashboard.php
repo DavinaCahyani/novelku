@@ -48,7 +48,7 @@
             </nav>
 
             <!-- Logout Link (placed at the bottom) -->
-            <a href="<?php echo base_url('auth') ?>" class="flex items-center p-4 hover:bg-blue-700 mt-auto">
+            <a href="<?php echo base_url('auth/logout') ?>" class="flex items-center p-4 hover:bg-blue-700 mt-auto">
                 <i class="fas fa-sign-out-alt w-6 h-6 mr-2"></i>
                 Logout
             </a>
@@ -114,7 +114,7 @@
 
             </div>
 
-            <div class="grid grid-cols-2 gap-5 p-5 m-5 shadow-xl rounded-xl">
+            <!-- <div class="grid grid-cols-2 gap-5 p-5 m-5 shadow-xl rounded-xl">
                 <div class="rounded-lg shadow-xl p-4 md:p-6">
                     <p class="text-2xl font-bold text-black">
                         Cerita Per Minggu
@@ -129,7 +129,7 @@
                     </p>
                     <div id="grafik-perbulan" class="text-black"></div>
                 </div>
-            </div>
+            </div> -->
 
             <div class="overflow-x-auto p-5 m-5 shadow-xl rounded-xl">
                 <p class="text-2xl font-bold text-black">
@@ -235,7 +235,7 @@
         });
     });
     </script>
-    <script>
+    <!-- <script>
     window.addEventListener("load", function() {
         const options = {
             colors: ["#1A56DB", "#FDBA8C"],
@@ -470,7 +470,7 @@
             chart.render();
         }
     });
-    </script>
+    </script> -->
     <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"></script>
     <script>
     document.getElementById('toggleSidebar').addEventListener('click', function() {

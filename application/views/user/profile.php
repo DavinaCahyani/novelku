@@ -109,7 +109,7 @@
             <img src="<?php echo base_url('davina/logo-tipis.png'); ?>" alt="Logo" width="150px">
             <div class="space-x-4">
                 <a href="<?php echo base_url(); ?>" class="text-white">Beranda</a>
-                <a href="<?php echo base_url(); ?>auth" class="text-white">Keluar</a>
+                <a href="<?php echo base_url(); ?>auth/logout" class="text-white">Keluar</a>
             </div>
         </div>
     </nav>
